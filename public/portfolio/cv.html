@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Curriculum Vitae (Europass) | Manuel Zambelli</title>
+  <meta content="Versione PDF pronta da condividere o inviare." name="description" />
+  <meta content="#f7f4ef" name="theme-color" />
+
+  <!-- Open Graph / Share preview -->
+  <meta content="website" property="og:type" />
+  <meta content="Manuel Zambelli" property="og:site_name" />
+  <meta content="Curriculum Vitae (Europass) | Manuel Zambelli" property="og:title" />
+  <meta content="Versione PDF pronta da condividere o inviare." property="og:description" />
+  <meta content="https://www.manuelzambelli.it/cv.html" property="og:url" />
+  <meta content="https://www.manuelzambelli.it/assets/og-image.png" property="og:image" />
+  <meta content="1200" property="og:image:width" />
+  <meta content="630" property="og:image:height" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="Curriculum Vitae (Europass) | Manuel Zambelli" name="twitter:title" />
+  <meta content="Versione PDF pronta da condividere o inviare." name="twitter:description" />
+  <meta content="https://www.manuelzambelli.it/assets/og-image.png" name="twitter:image" />
+
+  <link href="https://www.manuelzambelli.it/cv.html" rel="canonical" />
+
+  <!-- Favicons -->
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+  <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+  <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="site.webmanifest" rel="manifest" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+
+  <!-- Apply theme ASAP to avoid unreadable flash -->
+  <script>
+    (function () {
+      try {
+        const key = "portfolio_theme";
+        const stored = localStorage.getItem(key) || "system";
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const useDark = stored === "dark" || (stored === "system" && prefersDark);
+        if (useDark) document.documentElement.classList.add("theme-dark");
+      } catch (_) { }
+    })();
+  </script>
+
+  <!-- Print mode + optional lang via URL params (used for auto-generated PDFs) -->
+  <script>
+    (function () {
+      try {
+        const p = new URLSearchParams(window.location.search);
+        const lang = p.get("lang");
+        if (lang === "it" || lang === "en") localStorage.setItem("portfolio_lang", lang);
+        if (p.get("print") === "1") document.documentElement.classList.add("print-mode");
+      } catch (_) {}
+    })();
+  </script>
+
+  <!-- Tailwind CDN (same as home, for layout utilities) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"] } } }
+    }
+  </script>
+
+  <link href="css/custom.css" rel="stylesheet" />
+  <!-- html2pdf.js for client-side PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" defer></script>
+</head>
+
+<body class="font-sans">
+  <div aria-hidden="true" class="aurora"></div>
+  <div aria-atomic="true" aria-live="polite" id="toast-root"></div>
+
+  <!-- Header (same style as home) -->
+  <header class="fixed inset-x-0 top-0 z-30">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mt-4 flex items-center justify-between card px-4 py-3">
+        <a class="flex items-center gap-3" href="./#hero">
+          <img alt="Logo" class="h-9 w-9 rounded-full object-cover" src="assets/img/profile.jpg" />
+          <div class="leading-tight">
+            <p class="text-sm font-bold">Manuel Zambelli</p>
+            <p class="text-xs text-muted">CV</p>
+          </div>
+        </a>
+
+        <nav class="flex flex-wrap items-center justify-end gap-2 text-sm">
+          <a class="btn btn-ghost" href="./#projects"><span class="hidden sm:inline" data-i18n="cv.backProjects">Torna
+              ai progetti</span><span class="sm:hidden" data-i18n="cv.backProjectsShort">Progetti</span></a>
+
+          <button aria-label="Cambia lingua" class="btn btn-ghost" id="lang-toggle" type="button">
+            <img alt="" class="h-5 w-5 rounded-full" id="lang-flag" src="assets/flags/it.png" />
+            <span class="hidden lg:inline" data-i18n="toggle.lang">Lingua</span>
+          </button>
+
+          <button aria-label="Cambia tema" class="btn btn-ghost" id="theme-toggle" type="button">
+            <span aria-hidden="true" id="theme-icon">🌙</span>
+            <span class="hidden lg:inline" data-i18n="toggle.theme">Tema</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell pt-32 pb-16">
+    <div class="mx-auto max-w-6xl px-6">
+      <!-- European Style CV -->
+      <div class="cv-container">
+        <!-- Sidebar -->
+        <aside class="cv-sidebar">
+          <div class="relative">
+            <img class="cv-photo" id="cv-photo" src="assets/img/profile.jpg" alt="Manuel Zambelli" />
+          </div>
+
+          <div class="mt-4">
+            <p class="cv-sidebar-text italic" id="cv-bio"></p>
+          </div>
+
+          <div>
+            <div class="cv-section-title" data-i18n="nav.contact">Contatti</div>
+            <div class="grid gap-4" id="cv-contacts">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title" data-i18n="nav.skills">Competenze</div>
+            <ul class="grid gap-2 text-sm list-inside list-disc" id="cv-skills">
+              <!-- Dynamically filled -->
+            </ul>
+          </div>
+
+          <div>
+            <div class="cv-section-title" data-i18n="awards.languages">Lingue</div>
+            <ul class="grid gap-2 text-sm list-inside list-disc" id="cv-languages">
+              <!-- Dynamically filled -->
+            </ul>
+          </div>
+
+          <!-- European Format Mark -->
+          <div class="mt-auto pt-10 text-center opacity-40">
+            <div class="inline-flex flex-col items-center">
+              <img src="assets/ellipsis.svg" style="filter: grayscale(1); width: 40px; margin-bottom: 8px;" />
+              <p class="text-[10px] font-bold tracking-[0.2em] uppercase" style="color:#2b5a84">European Format</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="cv-main">
+          <div class="cv-role" id="cv-title-role">Assistente Amministrativo</div>
+          <div class="cv-name" id="cv-name">Manuel Zambelli</div>
+
+          <div class="mt-16">
+            <div class="cv-section-title" data-i18n="nav.studies">Istruzione</div>
+            <div id="cv-studies-list">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+        
+          <div class="mt-16">
+            <div class="cv-section-title" data-i18n="cv.projectsTitle">Progetti</div>
+            <div id="cv-projects-list">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+
+          <div class="mt-16">
+            <div class="cv-section-title" data-i18n="cv.certificationsTitle">Certificazioni</div>
+            <div id="cv-certifications-list">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+
+          <div class="mt-16">
+            <div class="cv-section-title" data-i18n="cv.volunteeringTitle">Volontariato</div>
+            <div id="cv-volunteering-list">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+
+          <div class="mt-16">
+            <div class="cv-section-title" data-i18n="cv.awardsTitle">Riconoscimenti</div>
+            <div id="cv-awards-list">
+              <!-- Dynamically filled -->
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+      <!-- Actions (Download / Toggle) -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4 no-print">
+        <button class="btn btn-ghost" onclick="window.print()" data-i18n="cv.print">Stampa CV</button>
+        <a class="btn btn-ghost" href="./#contact" data-i18n="cv.contact">Contatti</a>
+      </div>
+    </div>
+    </section>
+
+    <style>
+      @media print {
+
+        .no-print,
+        header,
+        .aurora,
+        #toast-root {
+          display: none !important;
+        }
+
+        body {
+          background: white !important;
+        }
+
+        .shell {
+          padding: 0 !important;
+        }
+
+        .cv-container {
+          box-shadow: none !important;
+          border-radius: 0 !important;
+        }
+      }
+
+      /* Same rules when forcing print mode via ?print=1 */
+      .print-mode .no-print,
+      .print-mode header,
+      .print-mode .aurora,
+      .print-mode #toast-root {
+        display: none !important;
+      }
+      .print-mode body {
+        background: white !important;
+      }
+      .print-mode .shell {
+        padding: 0 !important;
+      }
+      .print-mode .cv-container {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+    </style>
+
+    <script>
+      function hydrateCV() {
+        const getLang = () => localStorage.getItem("portfolio_lang") || "it";
+        const c = (window.PORTFOLIO_CONTENT || {})[getLang()] || (window.PORTFOLIO_CONTENT || {}).it || {};
+
+        // Basic Info
+        document.getElementById('cv-name').textContent = c.name || "Manuel Zambelli";
+        document.getElementById('cv-title-role').textContent = c.role || "Studente";
+        document.getElementById('cv-bio').textContent = c.about?.description || "";
+
+        // Contacts
+        const contactWrap = document.getElementById('cv-contacts');
+        const contacts = [
+          { icon: '✉️', text: c.email },
+          { icon: '📍', text: c.location },
+          { icon: '📞', text: c.phone || '+39 333 867 8617' },
+          { icon: '🎂', text: c.birthday || '9 Lug, 2008' },
+          { icon: '🇮🇹', text: c.citizenship || 'Italiana' },
+          { icon: '🌐', text: c.website || 'manuelzambelli.it' }
+        ];
+        contactWrap.innerHTML = contacts.map(item => `
+        <div class="cv-contact-item">
+          <span style="width: 24px; display: inline-block; text-align: center; font-size: 1.1rem;">${item.icon}</span>
+          <span class="truncate pl-1 font-medium text-[#2b5a84]">${item.text}</span>
+        </div>
+      `).join('');
+
+        // Skills (Competeze)
+        const skillsWrap = document.getElementById('cv-skills');
+        const traits = c.about?.traits || [];
+        skillsWrap.innerHTML = traits.map(t => `<li>${t}</li>`).join('');
+
+        // Languages
+        const langWrap = document.getElementById('cv-languages');
+        const langs = c.languages || [];
+        langWrap.innerHTML = langs.map(l => `<li>${l.name} | ${l.level}</li>`).join('');
+
+        // Studies
+        const studiesWrap = document.getElementById('cv-studies-list');
+        const edu = c.education || [];
+        studiesWrap.innerHTML = edu.map(e => `
+        <div class="cv-timeline-item">
+          <div class="flex justify-between items-start">
+            <div class="font-bold uppercase text-sm text-[#2b5a84]">${e.degree}</div>
+            <div class="text-xs text-[#5c8ab3] font-bold">${e.years}</div>
+          </div>
+          <div class="text-xs font-bold mt-1">${e.school}</div>
+        </div>
+      `).join('');
+
+        // Projects (all)
+        const cvProjWrap = document.getElementById('cv-projects-list');
+        if (cvProjWrap) {
+          const items = Array.isArray(c.projects) ? c.projects : [];
+          cvProjWrap.innerHTML = items.map(p => `
+        <div class="cv-timeline-item">
+          <div class="flex justify-between items-start">
+            <div class="font-bold uppercase text-sm text-[#2b5a84]">${p.title || ''}</div>
+            <div class="text-xs text-[#5c8ab3] font-bold">${(p.subtitle && p.subtitle.includes('•') ? p.subtitle.split('•')[1].trim() : (p.year || ''))}</div>
+          </div>
+          <div class="text-xs font-bold mt-1">${(p.subtitle && p.subtitle.includes('•') ? p.subtitle.split('•')[0].trim() : (p.kicker || p.category || ''))}</div>
+          ${p.description ? `<div class="text-xs mt-2 text-subtle leading-relaxed">${p.description}</div>` : ''}
+        </div>
+      `).join('') || `<div class="text-xs text-subtle">—</div>`;
+        }
+
+        // Certifications
+        const certWrap = document.getElementById('cv-certifications-list');
+        if (certWrap) {
+          const items = Array.isArray(c.certifications) ? c.certifications : [];
+          certWrap.innerHTML = items.map(x => `
+        <div class="cv-timeline-item">
+          <div class="flex justify-between items-start">
+            <div class="font-bold uppercase text-sm text-[#2b5a84]">${x.title || ''}</div>
+            <div class="text-xs text-[#5c8ab3] font-bold">${x.date || ''}</div>
+          </div>
+          <div class="text-xs font-bold mt-1">${x.issuer || ''}</div>
+          ${x.note ? `<div class="text-xs mt-2 text-subtle leading-relaxed">${x.note}</div>` : ''}
+        </div>
+      `).join('') || `<div class="text-xs text-subtle">—</div>`;
+        }
+
+        // Volunteering
+        const volWrap = document.getElementById('cv-volunteering-list');
+        if (volWrap) {
+          const items = Array.isArray(c.volunteering) ? c.volunteering : [];
+          volWrap.innerHTML = items.map(x => `
+        <div class="cv-timeline-item">
+          <div class="flex justify-between items-start">
+            <div class="font-bold uppercase text-sm text-[#2b5a84]">${[x.role, x.org].filter(Boolean).join(' — ')}</div>
+            <div class="text-xs text-[#5c8ab3] font-bold">${x.period || ''}</div>
+          </div>
+          ${x.note ? `<div class="text-xs mt-2 text-subtle leading-relaxed">${x.note}</div>` : ''}
+        </div>
+      `).join('') || `<div class="text-xs text-subtle">—</div>`;
+        }
+
+        // Awards
+        const awWrap = document.getElementById('cv-awards-list');
+        if (awWrap) {
+          const items = Array.isArray(c.awards) ? c.awards : [];
+          awWrap.innerHTML = items.map(x => `
+        <div class="cv-timeline-item">
+          <div class="flex justify-between items-start">
+            <div class="font-bold uppercase text-sm text-[#2b5a84]">${x.title || ''}</div>
+            <div class="text-xs text-[#5c8ab3] font-bold">${x.date || ''}</div>
+          </div>
+          <div class="text-xs font-bold mt-1">${x.issuer || ''}</div>
+          ${x.note ? `<div class="text-xs mt-2 text-subtle leading-relaxed">${x.note}</div>` : ''}
+        </div>
+      `).join('') || `<div class="text-xs text-subtle">—</div>`;
+        }
+
+      }
+
+      /* ---------- PDF generation via html2pdf.js ---------- */
+      function downloadCV() {
+        const el = document.querySelector('.cv-container');
+        if (!el || typeof html2pdf === 'undefined') {
+          // Fallback: use browser print dialog
+          window.print();
+          return;
+        }
+
+        const getLang = () => localStorage.getItem("portfolio_lang") || "it";
+        const c = (window.PORTFOLIO_CONTENT || {})[getLang()] || {};
+        const fileName = (c.name || 'CV').replace(/\s+/g, '_') + '_CV_Europass.pdf';
+
+        const opt = {
+          margin: 0,
+          filename: fileName,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        html2pdf().set(opt).from(el).save();
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        // Small delay to ensure content.js is loaded
+        (async () => {
+          // Load dynamic content (projects + all sections) before hydrating the CV
+          try {
+            if (typeof window.loadPortfolioFromDashboardApi === "function") {
+              await window.loadPortfolioFromDashboardApi();
+            } else if (typeof window.loadProjectsFromDashboardApi === "function") {
+              await window.loadProjectsFromDashboardApi();
+            }
+          } catch (_) {}
+
+          hydrateCV();
+
+          // Apply global notice / maintenance if available
+          try { window.applyGlobalNoticeAndMaintenance?.(); } catch (_) {}
+        })();
+        window.addEventListener("portfolio-langchange", hydrateCV);
+      });
+    </script>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/content.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

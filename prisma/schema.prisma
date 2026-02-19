@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String          @id @default(uuid())
+  username              String          @unique
+  email                 String          @unique
+  displayName           String
+  passwordHash          String
+  role                  String          @default("EDITOR")
+  status                String          @default("ACTIVE")
+  mustResetPassword     Boolean         @default(false)
+  lastLoginAt           DateTime?
+  failedLoginAttempts   Int             @default(0)
+  lockedUntil           DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  auditLogs             AuditLog[]
+  createdAwards         Award[]         @relation("AwardCreatedBy")
+  updatedAwards         Award[]         @relation("AwardUpdatedBy")
+  createdCertifications Certification[] @relation("CertificationCreatedBy")
+  updatedCertifications Certification[] @relation("CertificationUpdatedBy")
+  updatedNotices        GlobalNotice[]  @relation("NoticeUpdatedBy")
+  createdLanguages      Language[]      @relation("LanguageCreatedBy")
+  updatedLanguages      Language[]      @relation("LanguageUpdatedBy")
+  createdProjects       Project[]       @relation("ProjectCreatedBy")
+  updatedProjects       Project[]       @relation("ProjectUpdatedBy")
+  createdVolunteering   Volunteering[]  @relation("VolunteeringCreatedBy")
+  updatedVolunteering   Volunteering[]  @relation("VolunteeringUpdatedBy")
+}
+
+model Project {
+  id             String    @id @default(uuid())
+  slug           String    @unique
+  title          String
+  mainLink       String
+  description    String?
+  tags           String    @default("[]")
+  techStack      String    @default("[]")
+  images         String    @default("[]")
+  coverImage     String?
+  repoLink       String?
+  roleActivities String?
+  results        String?
+  status         String    @default("DRAFT")
+  featured       Boolean   @default(false)
+  order          Int       @default(0)
+  startDate      DateTime?
+  endDate        DateTime?
+  createdById    String
+  updatedById    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  createdBy      User      @relation("ProjectCreatedBy", fields: [createdById], references: [id])
+  updatedBy      User?     @relation("ProjectUpdatedBy", fields: [updatedById], references: [id])
+}
+
+model Certification {
+  id               String     @id @default(uuid())
+  title            String
+  issuer           String
+  issuedAt         DateTime
+  expiresAt        DateTime?
+  credentialId     String?
+  verificationLink String?
+  description      String?
+  skills           String     @default("[]")
+  attachmentPath   String?
+  status           String     @default("DRAFT")
+  order            Int        @default(0)
+  createdById      String
+  updatedById      String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  createdBy        User       @relation("CertificationCreatedBy", fields: [createdById], references: [id])
+  updatedBy        User?      @relation("CertificationUpdatedBy", fields: [updatedById], references: [id])
+  languages        Language[]
+}
+
+model Volunteering {
+  id           String    @id @default(uuid())
+  organization String
+  role         String
+  startDate    DateTime
+  endDate      DateTime?
+  isCurrent    Boolean   @default(false)
+  location     String?
+  description  String?
+  impact       String?
+  link         String?
+  tags         String    @default("[]")
+  status       String    @default("DRAFT")
+  order        Int       @default(0)
+  createdById  String
+  updatedById  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdBy    User      @relation("VolunteeringCreatedBy", fields: [createdById], references: [id])
+  updatedBy    User?     @relation("VolunteeringUpdatedBy", fields: [updatedById], references: [id])
+}
+
+model Award {
+  id             String   @id @default(uuid())
+  title          String
+  issuer         String
+  awardedAt      DateTime
+  description    String?
+  link           String?
+  attachmentPath String?
+  tags           String   @default("[]")
+  status         String   @default("DRAFT")
+  order          Int      @default(0)
+  createdById    String
+  updatedById    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdBy      User     @relation("AwardCreatedBy", fields: [createdById], references: [id])
+  updatedBy      User?    @relation("AwardUpdatedBy", fields: [updatedById], references: [id])
+}
+
+model Language {
+  id              String         @id @default(uuid())
+  name            String
+  level           String
+  notes           String?
+  certificationId String?
+  order           Int            @default(0)
+  visible         Boolean        @default(true)
+  createdById     String
+  updatedById     String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  certification   Certification? @relation(fields: [certificationId], references: [id])
+  createdBy       User           @relation("LanguageCreatedBy", fields: [createdById], references: [id])
+  updatedBy       User?          @relation("LanguageUpdatedBy", fields: [updatedById], references: [id])
+}
+
+model GlobalNotice {
+  id            String    @id @default(uuid())
+  title         String
+  message       String
+  type          String    @default("INFO")
+  active        Boolean   @default(false)
+  displayMode   String    @default("BANNER")
+  requiresAck   Boolean   @default(false)
+  startAt       DateTime?
+  endAt         DateTime?
+  ackExpiryDays Int       @default(7)
+  updatedById   String?
+  updatedAt     DateTime  @updatedAt
+  updatedBy     User?     @relation("NoticeUpdatedBy", fields: [updatedById], references: [id])
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  actorUserId String
+  action      String
+  entityType  String
+  entityId    String?
+  payload     String?
+  createdAt   DateTime @default(now())
+  actor       User     @relation(fields: [actorUserId], references: [id])
+}
+
+model SiteMaintenance {
+  id        String   @id
+  enabled   Boolean  @default(false)
+  title     String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

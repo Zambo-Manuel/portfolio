@@ -1,0 +1,7 @@
+[build]
+  command = "npm install && npm run build:pdf"
+  publish = "."
+
+[build.environment]
+  # Makes Playwright download browsers inside the build dir (works well on Netlify)
+  PLAYWRIGHT_BROWSERS_PATH = "0"
