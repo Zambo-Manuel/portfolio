@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>512 — Manuel Zambelli</title>
+  <meta name="description" content="Portfolio di Manuel Zambelli — studente in Informatica a Verona: progetti web, contenuti digitali, volontariato e formazione." />
+  <meta name="theme-color" content="#f7f4ef" />
+  <!-- Umami (self-hosted) optional config for consent-based loading -->
+  <meta name="umami-src" content="[UMAMI_SCRIPT_SRC]" />
+  <meta name="umami-website-id" content="[UMAMI_WEBSITE_ID]" />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Apply theme ASAP to avoid unreadable flash -->
+  <script>
+    (function () {
+      try {
+        const key = "portfolio_theme";
+        const stored = localStorage.getItem(key) || "system";
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const useDark = stored === "dark" || (stored === "system" && prefersDark);
+        if (useDark) document.documentElement.classList.add("theme-dark");
+      } catch (_) {}
+    })();
+  </script>
+  <script defer src="https://stats.davialessio.dev/script.js" data-website-id="cdac3ae8-be72-49ee-96e4-7cd8690b4725"></script>
+  <!-- Tailwind CDN (used lightly; most styling is custom.css) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"] }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+
+<body class="font-sans">
+  <!-- Full-page background animation (kept fixed while scrolling) -->
+  <div class="aurora" aria-hidden="true"></div>
+  <!-- Toasts -->
+  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-nav" class="fixed inset-0 z-40 hidden overflow-y-auto">
+    <div class="absolute inset-0 bg-black/30 backdrop-blur-sm backdrop"></div>
+    <div class="relative mx-auto mt-20 w-[min(520px,calc(100vw-36px))] card p-6 mobile-nav-panel">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-semibold tracking-wide" data-i18n="nav.menuTitle">Menu</p>
+        <button id="mobile-close" class="btn btn-ghost" type="button" data-i18n-aria-label="nav.closeMenuAria" aria-label="Chiudi menu" data-i18n="nav.close">Chiudi</button>
+      </div>
+      <nav class="mt-6 grid gap-3 text-base">
+        <a class="btn btn-ghost justify-start" href="index.html#about" data-i18n="nav.about">Chi sono</a>
+        <a class="btn btn-ghost justify-start" href="index.html#experience" data-i18n="nav.studies">Studi</a>
+        <a class="btn btn-ghost justify-start" href="index.html#skills" data-i18n="nav.skills">Competenze</a>
+        <a class="btn btn-ghost justify-start" href="index.html#projects" data-i18n="nav.projects">Progetti</a>
+        <a class="btn btn-ghost justify-start" href="index.html#extras" data-i18n="nav.extras">Extra</a>
+        <a class="btn btn-ghost justify-start" href="index.html#social" data-i18n="nav.social">Social</a>
+        <a class="btn btn-primary justify-start" href="index.html#contact" data-i18n="nav.contact">Contatti</a>
+      </nav>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+        <button id="lang-toggle-mobile" class="btn btn-ghost" type="button">
+          <span data-i18n="toggle.lang">Lingua</span>
+          <img id="lang-flag-mobile" alt="" class="h-5 w-5 rounded-full" src="assets/flags/it.png" />
+        </button>
+        <button id="theme-toggle-mobile" class="btn btn-ghost" type="button">
+          <span data-i18n="toggle.theme">Tema</span>
+          <span id="theme-icon-mobile" aria-hidden="true">🌙</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 z-30">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mt-4 flex items-center justify-between card px-4 py-3">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/logo.png" class="h-9 w-9 rounded-2xl" alt="Logo" />
+          <div class="leading-tight">
+            <p class="text-sm font-bold" data-content="name">Manuel Zambelli</p>
+            <p class="text-xs text-muted" data-content="location"></p>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-2 text-sm">
+          <a class="btn btn-ghost" href="index.html#about" data-i18n="nav.about">Chi sono</a>
+          <a class="btn btn-ghost" href="index.html#projects" data-i18n="nav.projects">Progetti</a>
+          <a class="btn btn-ghost" href="index.html#contact" data-i18n="nav.contact">Contatti</a>
+
+          <button id="lang-toggle" class="btn btn-ghost" type="button" aria-label="Cambia lingua">
+            <img id="lang-flag" alt="" class="h-5 w-5 rounded-full" src="assets/flags/it.png" />
+            <span class="hidden lg:inline" data-i18n="toggle.lang">Lingua</span>
+          </button>
+
+          <button id="theme-toggle" class="btn btn-ghost" type="button" aria-label="Cambia tema">
+            <span id="theme-icon" aria-hidden="true">🌙</span>
+            <span class="hidden lg:inline" data-i18n="toggle.theme">Tema</span>
+          </button>
+        </nav>
+
+        <button id="nav-toggle" class="md:hidden btn btn-ghost" type="button" data-i18n-aria-label="nav.openMenuAria" aria-label="Apri menu" data-i18n="nav.menuTitle">Menu</button>
+      </div>
+    </div>
+  </header>
+
+    <main class="shell">
+    <section id="hero" class="relative pt-32 pb-16">
+      <canvas id="hero-canvas" class="absolute inset-0 -z-10 h-full w-full" aria-hidden="true"></canvas>
+
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="grid gap-8 md:grid-cols-12 items-start">
+          <div class="md:col-span-7" data-reveal>
+            <span class="pill" data-i18n="error512.kicker">Errore 512</span>
+            <h1 class="mt-4 text-4xl font-extrabold tracking-tight" data-i18n="error512.title">Problema temporaneo</h1>
+            <p class="mt-4 text-lg text-soft" data-i18n="error512.subtitle">Il server ha restituito un errore. Riprova tra poco.</p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <button class="btn btn-primary" type="button" onclick="location.reload()" data-i18n="error.reload">Riprova</button>
+              <a class="btn btn-ghost" href="index.html" data-i18n="error.backHome">Torna alla home</a>
+            </div>
+          </div>
+
+          <div class="md:col-span-5" data-reveal>
+            <div class="card p-6">
+              <p class="text-sm font-semibold tracking-wide" data-i18n="error.tipTitle">Suggerimenti</p>
+              <ul class="mt-4 grid gap-2 text-sm text-subtle leading-relaxed">
+                <li data-i18n="error.tip1">Controlla che l’URL sia corretto.</li>
+                <li data-i18n="error.tip2">Torna alla home e usa il menu o la ricerca progetti.</li>
+              </ul>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a class="btn btn-ghost" href="index.html#projects" data-i18n="nav.projects">Progetti</a>
+                <a class="btn btn-ghost" href="index.html#contact" data-i18n="nav.contact">Contatti</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="mx-auto max-w-6xl px-6 pb-10">
+    <div class="card px-5 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between" style="box-shadow:none">
+      <p class="text-xs text-faint">© <span id="year2"></span> <span data-content="name"></span></p>
+      <p>Questo sito è un <b>portfolio personale</b> e non rappresenta un'attività commerciale</p>
+      <div class="flex flex-wrap gap-3 text-xs">
+        <button type="button" class="link-soft" data-open-legal="privacy" data-i18n="footer.privacy">Privacy Policy</button>
+        <button type="button" class="link-soft" data-open-legal="cookies" data-i18n="footer.cookies">Cookie Policy</button>
+        <button type="button" class="link-soft" data-open-consent data-i18n="footer.manageConsent">Gestisci privacy</button>
+      </div>
+    </div>
+  </footer>
+
+
+    <!-- Project modal (kept for JS) -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden">
+    <div class="backdrop absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div class="relative mx-auto mt-16 w-[min(920px,calc(100vw-36px))] card p-6 max-h-[80vh] overflow-auto">
+      <div class="flex items-start justify-between gap-4">
+        <div class="min-w-0">
+          <p id="modal-title" class="text-xl font-bold leading-snug"></p>
+          <p id="modal-sub" class="mt-1 text-sm text-muted"></p>
+        </div>
+        <button id="modal-close" class="btn btn-ghost" type="button" data-i18n-aria-label="modal.close" aria-label="Chiudi" data-i18n="modal.close">Chiudi</button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a id="modal-link" class="btn btn-primary hidden" href="#" target="_blank" rel="noreferrer" data-i18n="modal.open">Apri</a>
+        <button id="modal-copy" class="btn btn-ghost" type="button" data-i18n="modal.copy">Copia link</button>
+      </div>
+
+      <div id="modal-body" class="mt-5"></div>
+    </div>
+  </div>
+
+<!-- Legal modal (Privacy / Cookie policy) -->
+  <div id="legal-modal" class="fixed inset-0 z-[55] hidden" aria-hidden="true">
+    <div class="backdrop absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div class="relative mx-auto mt-16 w-[min(920px,calc(100vw-36px))] card p-6 max-h-[80vh] overflow-auto" role="dialog" aria-modal="true">
+      <div class="flex items-start justify-between gap-4">
+        <p class="text-xl font-bold leading-snug" data-i18n="legal.title">Privacy e Cookie Policy</p>
+        <button id="legal-close" class="btn btn-ghost" type="button" data-i18n-aria-label="modal.close" aria-label="Chiudi" data-i18n="modal.close">Chiudi</button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button class="btn btn-ghost legal-tab is-active" type="button" data-legal-tab="privacy" data-i18n="legal.tabPrivacy">Privacy</button>
+        <button class="btn btn-ghost legal-tab" type="button" data-legal-tab="cookies" data-i18n="legal.tabCookies">Cookie</button>
+      </div>
+
+      <div id="legal-content" class="legal-content mt-5"></div>
+    </div>
+  </div>
+
+  <!-- Consent gate (shown on first visit) -->
+  <div id="consent-modal" class="fixed inset-0 z-[60] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div class="relative mx-auto mt-24 w-[min(720px,calc(100vw-36px))] card p-6" role="dialog" aria-modal="true">
+      <p class="text-xl font-bold leading-snug" data-i18n="consent.title">Privacy &amp; Cookie</p>
+      <p class="mt-3 text-subtle leading-relaxed" data-i18n="consent.text">Per continuare a usare il sito, conferma di aver letto e accettato la Privacy Policy e la Cookie Policy.</p>
+
+      <div class="mt-5 flex flex-wrap gap-3">
+        <button id="consent-accept" class="btn btn-primary" type="button" data-i18n="consent.accept">Accetta</button>
+        <button id="consent-decline" class="btn btn-ghost" type="button" data-i18n="consent.decline">Rifiuta</button>
+        <button id="consent-read" class="btn btn-ghost" type="button" data-i18n="consent.read" data-open-legal="privacy">Leggi policy</button>
+      </div>
+
+      <p class="mt-3 text-xs text-faint" data-i18n="consent.tip">Tip: puoi riaprire queste policy dal footer in qualsiasi momento.</p>
+    </div>
+  </div>
+
+  <script id="i18n-it" type="application/json">{"nav.menuTitle":"Menu","nav.close":"Chiudi","nav.closeMenuAria":"Chiudi menu","nav.openMenuAria":"Apri menu","nav.about":"Chi sono","nav.studies":"Studi","nav.skills":"Competenze","nav.projects":"Progetti","nav.extras":"Extra","nav.social":"Social","nav.contact":"Contatti","toggle.lang":"Lingua","toggle.theme":"Tema","theme.light":"Chiaro","theme.dark":"Scuro","cta.seeProjects":"Vedi progetti","cta.about":"Chi sono","hero.pill":"Portfolio","hero.infoTitle":"Info","hero.info.name":"Nome","hero.info.role":"Ruolo","hero.info.availability":"Disponibilità","hero.info.contact":"Contatto","about.subtitle":"","about.bioTitle":"Bio","experience.subtitle":"Percorso e traguardi principali.","skills.subtitle":"Tecnologie e strumenti.","skills.project":"progetto","skills.projects":"progetti","projects.subtitle":"I miei progetti ed esperienze personali","projects.all":"Tutti","projects.details":"Dettagli","projects.link":"Link","projects.none":"Nessun progetto.","extras.subtitle":"Certificazioni, volontariato, premi e lingue.","extras.certifications":"Certificazioni","extras.volunteering":"Volontariato","extras.awardsLanguages":"Riconoscimenti & lingue","social.subtitle":"Link rapidi.","contact.subtitle":"Scrivimi: ti rispondo via email il prima possibile.","form.nameLabel":"Nome","form.namePlaceholder":"Il tuo nome","form.emailLabel":"Email","form.emailPlaceholder":"nome@email.com","form.messageLabel":"Messaggio","form.messagePlaceholder":"Scrivi qui...","form.captchaLabel":"Verifica","form.captchaRefresh":"Rigenera","form.captchaRefreshAria":"Rigenera captcha","form.captchaPlaceholder":"Inserisci il codice","form.consentLabel":"Consenso","form.consentText":"Accetto Privacy e Cookie Policy.","form.submit":"Invia","form.sending":"Invio…","form.firstTimeNote":"Se è il primo invio, FormSubmit potrebbe richiedere una conferma via email. Controlla anche la cartella Spam.","form.subject":"Nuovo contatto dal portfolio","form.sentTitle":"Messaggio inviato ✓","form.sentMsg":"Grazie! Ti rispondo al più presto.","form.failTitle":"Invio non riuscito","form.failMsg":"Riprova tra poco o contattami via email/social.","form.checkTitle":"Controlla i campi","form.checkMsg":"Correggi gli errori evidenziati e riprova.","form.err.name":"Inserisci un nome valido.","form.err.email":"Inserisci un'email valida.","form.err.message":"Scrivi almeno 10 caratteri.","form.err.consent":"Devi accettare Privacy e Cookie Policy.","form.err.captchaMissing":"Completa la verifica anti‑robot.","form.err.captchaWrong":"Codice errato. Riprova.","captcha.hint":"COPIA IL CODICE","modal.close":"Chiudi","modal.open":"Apri","modal.copy":"Copia link","modal.copiedTitle":"Copiato","modal.copiedMsg":"Link copiato negli appunti.","modal.copyFailTitle":"Impossibile copiare","modal.copyFailMsg":"Copia manualmente il link.","toast.closeAria":"Chiudi","fallback.education":"Aggiungi education in js/content.js.","fallback.skills":"Aggiungi stack nei progetti in js/content.js.","fallback.certifications":"Aggiungi certifications in js/content.js.","fallback.volunteering":"Aggiungi volunteering in js/content.js.","fallback.social":"Aggiungi i link social in js/content.js.","general.openSite":"Vai al sito","footer.privacy":"Privacy Policy","footer.cookies":"Cookie Policy","footer.manageConsent":"Gestisci privacy","legal.title":"Privacy e Cookie Policy","legal.tabPrivacy":"Privacy","legal.tabCookies":"Cookie","legal.privacyHtml":"<p><strong>Ultimo aggiornamento:</strong> [gg/mm/aaaa]</p>\n<p>Questa informativa descrive come vengono trattati i dati personali degli utenti che visitano questo sito (“Sito”).</p>\n\n<h3>1) Titolare del trattamento</h3>\n<p><strong>Manuel Zambelli</strong>, Verona (Italia).<br/>\nContatto: <strong>[EMAIL_PRIVACY]</strong></p>\n\n<h3>2) Dati trattati</h3>\n<h4>2.1 Dati di navigazione e statistiche (Analytics)</h4>\n<p>Il Sito utilizza <strong>Umami Analytics</strong> (<em>self-hosted</em>) per raccogliere statistiche di visita e migliorare i contenuti. I dati raccolti sono di natura tecnica e legati all’utilizzo del Sito (ad es. pagine viste, durata visita, referrer, tipo di dispositivo/browser, sistema operativo).</p>\n<p>L’analytics è configurato in modalità <strong>privacy-friendly</strong>: nessuna profilazione pubblicitaria, nessuna vendita dei dati e, di norma, <strong>senza cookie</strong> (statistiche aggregate/pseudonimizzate).</p>\n\n<h4>2.2 Dati forniti volontariamente (Form contatti)</h4>\n<p>Se invii un messaggio tramite il form, vengono trattati i dati che inserisci (es. nome, email, contenuto del messaggio) al solo scopo di rispondere alla richiesta e gestire eventuali comunicazioni successive.</p>\n<p>Se il form usa un servizio esterno per l’inoltro (es. <em>form-to-email</em>), tale fornitore può trattare i dati secondo i propri termini e informative.</p>\n\n<h4>2.3 Preferenze salvate sul dispositivo</h4>\n<p>Il Sito salva alcune preferenze nel browser tramite <strong>localStorage</strong> (non cookie), ad esempio: tema <em>light/dark</em>, lingua (IT/EN) e stato di scelta privacy/cookie. Queste informazioni restano sul tuo dispositivo e non sono usate per identificarti.</p>\n\n<h3>3) Finalità e basi giuridiche</h3>\n<ul>\n  <li><strong>Statistiche e miglioramento del Sito</strong>: legittimo interesse del Titolare (analytics non invasivo e privo di profilazione); in alternativa, ove richiesto, consenso.</li>\n  <li><strong>Risposta a richieste dell’utente</strong>: esecuzione di misure precontrattuali e/o consenso (a seconda del contenuto della richiesta).</li>\n  <li><strong>Sicurezza e funzionamento tecnico</strong>: legittimo interesse.</li>\n</ul>\n\n<h3>4) Destinatari</h3>\n<p>I dati possono essere trattati da fornitori tecnici (hosting del Sito, provider email) e dal sistema analytics Umami (self-hosted), per quanto necessario alle finalità sopra indicate.</p>\n\n<h3>5) Trasferimenti extra UE</h3>\n<p>Se uno dei fornitori coinvolti tratta dati fuori dallo Spazio Economico Europeo, il trasferimento avverrà nel rispetto del GDPR (es. clausole contrattuali standard o decisioni di adeguatezza).</p>\n\n<h3>6) Conservazione</h3>\n<ul>\n  <li>Dati dei messaggi di contatto: per il tempo necessario a gestire la richiesta e comunque non oltre <strong>[PERIODO_CONSERVAZIONE]</strong>, salvo obblighi di legge o tutela in sede legale.</li>\n  <li>Dati analytics: conservati secondo le impostazioni di Umami, idealmente per <strong>[PERIODO_ANALYTICS]</strong>.</li>\n</ul>\n\n<h3>7) Diritti dell’utente</h3>\n<p>Puoi esercitare i diritti previsti dal GDPR (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità) scrivendo a <strong>[EMAIL_PRIVACY]</strong>. Hai inoltre diritto di proporre reclamo al <strong>Garante per la Protezione dei Dati Personali</strong>.</p>\n\n<h3>8) Modifiche</h3>\n<p>Il Titolare può aggiornare questa informativa. La data di aggiornamento è indicata all’inizio.</p>\n","legal.cookiesHtml":"<p><strong>Ultimo aggiornamento:</strong> [gg/mm/aaaa]</p>\n\n<h3>1) Cosa sono i cookie</h3>\n<p>I cookie sono piccoli file che i siti possono salvare sul dispositivo dell’utente tramite il browser. Esistono anche tecnologie simili, come il <strong>localStorage</strong>.</p>\n\n<h3>2) Cosa usa questo Sito</h3>\n<h4>2.1 Cookie</h4>\n<p>Questo Sito non utilizza cookie di profilazione. Eventuali cookie tecnici possono dipendere dal provider di hosting o da componenti strettamente necessari al funzionamento.</p>\n\n<h4>2.2 localStorage (preferenze)</h4>\n<p>Il Sito utilizza <strong>localStorage</strong> per memorizzare tema (light/dark), lingua (IT/EN) e la scelta privacy/cookie. Queste preferenze non sono usate per profilazione e restano sul tuo dispositivo.</p>\n\n<h4>2.3 Statistiche (Umami self-hosted)</h4>\n<p>Per misurare l’utilizzo del Sito vengono raccolte statistiche tramite <strong>Umami</strong> in configurazione <strong>privacy-friendly</strong>, generalmente <strong>cookie-less</strong>. Le informazioni sono usate solo in forma aggregata/pseudonimizzata per capire come viene utilizzato il Sito e migliorarlo.</p>\n\n<h3>3) Come gestire cookie e dati locali</h3>\n<p>Puoi cancellare cookie e dati locali (localStorage) dalle impostazioni del browser o usare la navigazione in incognito. Disabilitare cookie tecnici può influire su alcune funzionalità, se presenti.</p>\n","consent.title":"Privacy & Cookie","consent.text":"Usiamo statistiche anonime (Umami) e salviamo tema/lingua sul tuo dispositivo. Puoi accettare o rifiutare le statistiche.","consent.accept":"Accetta","consent.read":"Leggi policy","consent.savedTitle":"Preferenze salvate ✓","consent.savedMsg":"Grazie! Puoi cambiare la scelta dal footer in qualsiasi momento.","consent.tip":"Tip: puoi riaprire queste policy dal footer in qualsiasi momento.","projects.searchPlaceholder":"Cerca progetti...","projects.searchAria":"Cerca tra i progetti","projects.showAll":"Mostra tutto","projects.showLess":"Mostra meno","projects.countTpl":"{shown} di {total}","projects.countResultsTpl":"Risultati: {shown} di {total}","consent.decline":"Rifiuta","consent.acceptedMsg":"Analytics attive.","consent.declinedMsg":"Analytics disattivate.","error.backHome":"Torna alla home","error.contact":"Contattami","error.reload":"Riprova","error.tipTitle":"Suggerimenti","error.tip1":"Controlla che l’URL sia corretto.","error.tip2":"Torna alla home e usa il menu o la ricerca progetti.","error404.kicker":"Errore 404","error404.title":"Pagina non trovata","error404.subtitle":"Il link che hai seguito non esiste o è stato spostato.","error512.kicker":"Errore 512","error512.title":"Problema temporaneo","error512.subtitle":"Il server ha restituito un errore. Riprova tra poco."}</script>
+  <script id="i18n-en" type="application/json">{"nav.menuTitle":"Menu","nav.close":"Close","nav.closeMenuAria":"Close menu","nav.openMenuAria":"Open menu","nav.about":"About","nav.studies":"Education","nav.skills":"Skills","nav.projects":"Projects","nav.extras":"Extras","nav.social":"Social","nav.contact":"Contact","toggle.lang":"Language","toggle.theme":"Theme","theme.light":"Light","theme.dark":"Dark","cta.seeProjects":"See projects","cta.about":"About","hero.pill":"Portfolio","hero.infoTitle":"Info","hero.info.name":"Name","hero.info.role":"Role","hero.info.availability":"Availability","hero.info.contact":"Contact","about.subtitle":"","about.bioTitle":"Bio","experience.subtitle":"Education and key milestones.","skills.subtitle":"Technologies and tools.","skills.project":"project","skills.projects":"projects","projects.subtitle":"My projects and experiences","projects.all":"All","projects.details":"Details","projects.link":"Link","projects.none":"No projects.","extras.subtitle":"Certifications, volunteering, awards and languages.","extras.certifications":"Certifications","extras.volunteering":"Volunteering","extras.awardsLanguages":"Awards & languages","social.subtitle":"Quick links.","contact.subtitle":"Write to me — I'll reply by email as soon as possible.","form.nameLabel":"Name","form.namePlaceholder":"Your name","form.emailLabel":"Email","form.emailPlaceholder":"name@email.com","form.messageLabel":"Message","form.messagePlaceholder":"Write here...","form.captchaLabel":"Verification","form.captchaRefresh":"Refresh","form.captchaRefreshAria":"Refresh captcha","form.captchaPlaceholder":"Type the code","form.consentLabel":"Consent","form.consentText":"I accept the Privacy and Cookie Policy.","form.submit":"Send","form.sending":"Sending…","form.firstTimeNote":"If this is your first submission, FormSubmit may require email confirmation. Also check Spam.","form.subject":"New contact from portfolio","form.sentTitle":"Message sent ✓","form.sentMsg":"Thanks! I'll reply as soon as possible.","form.failTitle":"Send failed","form.failMsg":"Try again later or contact me via email/social.","form.checkTitle":"Check the fields","form.checkMsg":"Fix the highlighted errors and try again.","form.err.name":"Enter a valid name.","form.err.email":"Enter a valid email.","form.err.message":"Write at least 10 characters.","form.err.consent":"You must accept the privacy policy.","form.err.captchaMissing":"Complete the anti‑bot check.","form.err.captchaWrong":"Wrong code. Try again.","captcha.hint":"TYPE THE CODE","modal.close":"Close","modal.open":"Open","modal.copy":"Copy link","modal.copiedTitle":"Copied","modal.copiedMsg":"Link copied to clipboard.","modal.copyFailTitle":"Couldn't copy","modal.copyFailMsg":"Please copy the link manually.","toast.closeAria":"Close","fallback.education":"Add education in js/content.js.","fallback.skills":"Add project stack in js/content.js.","fallback.certifications":"Add certifications in js/content.js.","fallback.volunteering":"Add volunteering in js/content.js.","fallback.social":"Add social links in js/content.js.","general.openSite":"Open site","footer.privacy":"Privacy Policy","footer.cookies":"Cookie Policy","footer.manageConsent":"Manage privacy","legal.title":"Privacy & Cookie Policy","legal.tabPrivacy":"Privacy","legal.tabCookies":"Cookies","legal.privacyHtml":"<p><strong>Last updated:</strong> [dd/mm/yyyy]</p>\n<p>This notice explains how personal data is processed when you visit this website (“Site”).</p>\n\n<h3>1) Data Controller</h3>\n<p><strong>Manuel Zambelli</strong>, Verona (Italy).<br/>\nContact: <strong>[PRIVACY_EMAIL]</strong></p>\n\n<h3>2) Data we process</h3>\n<h4>2.1 Usage statistics (Analytics)</h4>\n<p>The Site uses <strong>Umami Analytics</strong> (<em>self-hosted</em>) to understand traffic and improve content. Collected data is technical usage information (e.g. pages viewed, session duration, referrer, device/browser type, operating system).</p>\n<p>Analytics is configured in a <strong>privacy-friendly</strong> way: no advertising profiling, no data selling and typically <strong>cookie-less</strong> (aggregated/pseudonymised statistics).</p>\n\n<h4>2.2 Contact data</h4>\n<p>If you submit the contact form, we process the data you provide (e.g. name, email, message) solely to reply and manage any follow-up communication.</p>\n<p>If the form uses a third-party forwarding service (e.g. form-to-email), that provider may process data under its own terms and notices.</p>\n\n<h4>2.3 Preferences stored on your device</h4>\n<p>The Site stores certain preferences via <strong>localStorage</strong> (not cookies), such as light/dark theme, language (IT/EN) and the privacy/cookie choice. This information stays on your device and is not used to identify you.</p>\n\n<h3>3) Purposes & lawful bases</h3>\n<ul>\n  <li><strong>Analytics and Site improvement</strong>: legitimate interests (non-invasive, no profiling); alternatively, where required, consent.</li>\n  <li><strong>Responding to enquiries</strong>: pre-contractual steps and/or consent depending on the request.</li>\n  <li><strong>Security and technical operation</strong>: legitimate interests.</li>\n</ul>\n\n<h3>4) Recipients</h3>\n<p>Data may be processed by technical providers (hosting, email provider) and the self-hosted analytics system (Umami), only as necessary for the purposes above.</p>\n\n<h3>5) International transfers</h3>\n<p>If any provider processes data outside the EEA, appropriate GDPR safeguards will apply (e.g. SCCs or adequacy decisions).</p>\n\n<h3>6) Retention</h3>\n<ul>\n  <li>Contact messages: kept for the time needed to handle the request and no longer than <strong>[RETENTION_CONTACT]</strong>, unless legally required.</li>\n  <li>Analytics: stored according to Umami self-hosted settings, ideally for <strong>[RETENTION_ANALYTICS]</strong>.</li>\n</ul>\n\n<h3>7) Your rights</h3>\n<p>You can exercise GDPR rights by contacting <strong>[PRIVACY_EMAIL]</strong>. You may also lodge a complaint with the relevant supervisory authority.</p>\n\n<h3>8) Changes</h3>\n<p>We may update this notice. The update date is shown at the top.</p>\n","legal.cookiesHtml":"<p><strong>Last updated:</strong> [dd/mm/yyyy]</p>\n\n<h3>1) What cookies are</h3>\n<p>Cookies are small files a website may store on your device via your browser. Similar technologies include <strong>localStorage</strong>.</p>\n\n<h3>2) What this Site uses</h3>\n<h4>2.1 Cookies</h4>\n<p>This Site does not use advertising/profiling cookies. Any essential/technical cookies, if present, may depend on the hosting provider or strictly necessary components.</p>\n\n<h4>2.2 localStorage (preferences)</h4>\n<p>The Site uses <strong>localStorage</strong> to store theme (light/dark), language (IT/EN) and the privacy/cookie choice. These preferences are not used for profiling and remain on your device.</p>\n\n<h4>2.3 Analytics (Umami self-hosted)</h4>\n<p>The Site uses <strong>Umami</strong> in a <strong>privacy-friendly</strong>, typically <strong>cookie-less</strong> configuration to produce aggregated/pseudonymised statistics and improve the Site.</p>\n\n<h3>3) Managing cookies and local data</h3>\n<p>You can delete cookies and local data (localStorage) via your browser settings or use private browsing. Disabling essential cookies may affect some functionality, if present.</p>\n","consent.title":"Privacy & Cookies","consent.text":"We use privacy-friendly analytics (Umami) and store theme/language on your device. You can accept or decline analytics.","consent.accept":"Accept","consent.read":"Read policies","consent.savedTitle":"Preferences saved ✓","consent.savedMsg":"Thanks! You can change this choice anytime from the footer.","consent.tip":"Tip: you can reopen these policies from the footer at any time.","projects.searchPlaceholder":"Search projects...","projects.searchAria":"Search within projects","projects.showAll":"Show all","projects.showLess":"Show less","projects.countTpl":"{shown} of {total}","projects.countResultsTpl":"Results: {shown} of {total}","consent.decline":"Decline","consent.acceptedMsg":"Analytics enabled.","consent.declinedMsg":"Analytics disabled.","error.backHome":"Back to home","error.contact":"Contact me","error.reload":"Try again","error.tipTitle":"Tips","error.tip1":"Check that the URL is correct.","error.tip2":"Go back to the homepage and use the menu or project search.","error404.kicker":"Error 404","error404.title":"Page not found","error404.subtitle":"The page you’re looking for doesn’t exist or has been moved.","error512.kicker":"Error 512","error512.title":"Temporary issue","error512.subtitle":"The server returned an error. Please try again in a moment."}</script>
+  <script src="js/i18n.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

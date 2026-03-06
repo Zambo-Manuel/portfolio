@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manuel Zambelli | Portfolio</title>
+<meta content="Portfolio di Manuel Zambelli — studente in Informatica a Verona: progetti web, contenuti digitali, volontariato e formazione." name="description"/>
+<meta content="#f7f4ef" name="theme-color"/>
+<!-- Umami (self-hosted) optional config for consent-based loading -->
+<meta content="[UMAMI_SCRIPT_SRC]" name="umami-src"/>
+<meta content="[UMAMI_WEBSITE_ID]" name="umami-website-id"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Apply theme ASAP to avoid unreadable flash -->
+<script>
+    (function () {
+      try {
+        const key = "portfolio_theme";
+        const stored = localStorage.getItem(key) || "system";
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const useDark = stored === "dark" || (stored === "system" && prefersDark);
+        if (useDark) document.documentElement.classList.add("theme-dark");
+      } catch (_) {}
+    })();
+  </script>
+<script data-website-id="cdac3ae8-be72-49ee-96e4-7cd8690b4725" defer="" src="https://stats.davialessio.dev/script.js"></script>
+<!-- Tailwind CDN (used lightly; most styling is custom.css) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"] }
+        }
+      }
+    }
+  </script>
+<link href="css/custom.css" rel="stylesheet"/>
+<link href="https://www.manuelzambelli.it/" rel="canonical"/><meta content="website" property="og:type"/><meta content="Manuel Zambelli" property="og:site_name"/><meta content="Manuel Zambelli | Portfolio" property="og:title"/><meta content="Portfolio di Manuel Zambelli — studente in Informatica a Verona: progetti web, contenuti digitali, volontariato e formazione." property="og:description"/><meta content="https://www.manuelzambelli.it/" property="og:url"/><meta content="https://www.manuelzambelli.it/assets/og-image.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="Manuel Zambelli | Portfolio" name="twitter:title"/><meta content="Portfolio di Manuel Zambelli — studente in Informatica a Verona: progetti web, contenuti digitali, volontariato e formazione." name="twitter:description"/><meta content="https://www.manuelzambelli.it/assets/og-image.png" name="twitter:image"/><link href="/favicon.ico" rel="icon" type="image/x-icon"/><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="/site.webmanifest" rel="manifest"/></head>
+<body class="font-sans">
+<!-- Full-page background animation (kept fixed while scrolling) -->
+<div aria-hidden="true" class="aurora"></div>
+<!-- Toasts -->
+<div aria-atomic="true" aria-live="polite" id="toast-root"></div>
+<!-- Mobile menu -->
+<div class="fixed inset-0 z-40 hidden overflow-y-auto" id="mobile-nav">
+<div class="absolute inset-0 bg-black/30 backdrop-blur-sm backdrop"></div>
+<div class="relative mx-auto mt-20 w-[min(520px,calc(100vw-36px))] card p-6 mobile-nav-panel">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold tracking-wide" data-i18n="nav.menuTitle">Menu</p>
+<button aria-label="Chiudi menu" class="btn btn-ghost" data-i18n="nav.close" data-i18n-aria-label="nav.closeMenuAria" id="mobile-close" type="button">Chiudi</button>
+</div>
+<nav class="mt-6 grid gap-3 text-base">
+<a class="btn btn-ghost justify-start" data-i18n="nav.about" href="#about">Chi sono</a>
+<a class="btn btn-ghost justify-start" data-i18n="nav.studies" href="#experience">Studi</a>
+<a class="btn btn-ghost justify-start" data-i18n="nav.skills" href="#skills">Competenze</a>
+<a class="btn btn-ghost justify-start" data-i18n="nav.projects" href="#projects">Progetti</a>
+<a class="btn btn-ghost justify-start" data-i18n="nav.extras" href="#extras">Extra</a>
+<a class="btn btn-ghost justify-start" data-i18n="nav.social" href="#social">Social</a>
+<a class="btn btn-primary justify-start" data-i18n="nav.contact" href="#contact">Contatti</a>
+</nav>
+<div class="mt-6 grid gap-3 sm:grid-cols-2">
+<button class="btn btn-ghost" id="lang-toggle-mobile" type="button">
+<span data-i18n="toggle.lang">Lingua</span>
+<img alt="" class="h-5 w-5 rounded-full" id="lang-flag-mobile" src="assets/flags/it.png"/>
+</button>
+<button class="btn btn-ghost" id="theme-toggle-mobile" type="button">
+<span data-i18n="toggle.theme">Tema</span>
+<span aria-hidden="true" id="theme-icon-mobile">🌙</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Header -->
+<header class="fixed inset-x-0 top-0 z-30">
+<div class="mx-auto max-w-6xl px-6">
+<div class="mt-4 flex items-center justify-between card px-4 py-3">
+<a class="flex items-center gap-3" href="#hero">
+<img alt="Logo" class="h-9 w-9 rounded-2xl" src="assets/logo.png"/>
+<div class="leading-tight">
+<p class="text-sm font-bold" data-content="name">Manuel Zambelli</p>
+<p class="text-xs text-muted" data-content="location"></p>
+</div>
+</a>
+<nav class="hidden md:flex items-center gap-2 text-sm">
+<a class="btn btn-ghost" data-i18n="nav.about" href="#about">Chi sono</a>
+<a class="btn btn-ghost" data-i18n="nav.projects" href="#projects">Progetti</a>
+<a class="btn btn-ghost" data-i18n="nav.contact" href="#contact">Contatti</a>
+<button aria-label="Cambia lingua" class="btn btn-ghost" id="lang-toggle" type="button">
+<img alt="" class="h-5 w-5 rounded-full" id="lang-flag" src="assets/flags/it.png"/>
+<span class="hidden lg:inline" data-i18n="toggle.lang">Lingua</span>
+</button>
+<button aria-label="Cambia tema" class="btn btn-ghost" id="theme-toggle" type="button">
+<span aria-hidden="true" id="theme-icon">🌙</span>
+<span class="hidden lg:inline" data-i18n="toggle.theme">Tema</span>
+</button><button aria-label="Attiva modalità recruiter" class="btn btn-ghost" id="toggle-recruiter" type="button"><span data-i18n="toggle.recruiter">Recruiter</span></button>
+</nav>
+<button aria-label="Attiva modalità recruiter" class="md:hidden btn btn-ghost" id="toggle-recruiter-mobile" type="button"><span data-i18n="toggle.recruiter">Recruiter</span></button>
+<button aria-label="Apri menu" class="md:hidden btn btn-ghost" data-i18n="nav.menuTitle" data-i18n-aria-label="nav.openMenuAria" id="nav-toggle" type="button">Menu</button>
+</div>
+</div>
+</header>
+<main class="shell">
+<!-- HERO -->
+<section class="relative pt-32 pb-16" id="hero">
+<canvas aria-hidden="true" class="absolute inset-0 -z-10 h-full w-full" id="hero-canvas"></canvas>
+<div class="mx-auto max-w-6xl px-6">
+<div class="grid gap-8 md:grid-cols-12 items-end">
+<div class="md:col-span-7" data-reveal="">
+<div class="pill">
+<span class="inline-block h-2 w-2 rounded-full" style="background:rgb(var(--accent3))"></span>
+<span data-i18n="hero.pill">Portfolio</span>
+</div>
+<h1 class="headline" data-content="headline">Benvenuto nel mio portfolio!</h1>
+<p class="mt-5 text-lg text-subtle max-w-xl" data-content="subheadline">Mi piace trasformare idee in qualcosa di concreto: siti web, contenuti digitali e progetti di team.</p>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="btn btn-primary" data-i18n="cta.seeProjects" href="#projects">Vedi progetti</a>
+<a class="btn btn-ghost" data-i18n="cta.about" href="#about">Chi sono</a>
+<a class="btn btn-ghost" data-content="email" href="mailto:"></a>
+</div>
+</div>
+<aside class="md:col-span-5" data-reveal="">
+<div class="card p-6">
+<p class="text-sm font-semibold tracking-wide" data-i18n="hero.infoTitle">Info</p>
+<div class="mt-4 grid gap-3">
+<div class="flex items-center justify-between rounded-2xl border border-soft bg-soft px-4 py-3">
+<span class="text-sm text-soft" data-i18n="hero.info.name">Nome</span>
+<span class="text-sm font-semibold" data-content="name"></span>
+</div>
+<div class="flex items-center justify-between rounded-2xl border border-soft bg-soft px-4 py-3">
+<span class="text-sm text-soft" data-i18n="hero.info.role">Ruolo</span>
+<span class="text-sm font-semibold text-right" data-content="role"></span>
+</div>
+<div class="flex items-center justify-between rounded-2xl border border-soft bg-soft px-4 py-3">
+<span class="text-sm text-soft" data-i18n="hero.info.availability">Disponibilità</span>
+<span class="text-sm font-semibold text-right" data-content="availability"></span>
+</div>
+<div class="flex items-center justify-between rounded-2xl border border-soft bg-soft px-4 py-3">
+<span class="text-sm text-soft" data-i18n="hero.info.contact">Contatto</span>
+<a class="text-sm font-semibold underline underline-offset-4 underline-soft" data-content="email" href="mailto:"></a>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section><section class="py-10" id="recruiter">
+<div class="mx-auto max-w-6xl px-6">
+<div class="card p-6">
+<div class="flex items-start justify-between gap-4 flex-wrap">
+<div>
+<p class="text-sm font-semibold tracking-wide text-soft" data-i18n="recruiter.pill">Recruiter view</p>
+<h2 class="mt-1 text-2xl font-bold" data-i18n="recruiter.title">1 minuto di lettura</h2>
+<p class="mt-2 text-subtle leading-relaxed" id="recruiter-summary"></p>
+</div>
+<div class="flex flex-wrap gap-2">
+<a class="btn btn-primary" data-i18n="recruiter.downloadCv" download="" href="/assets/cv/Manuel_Zambelli_CV_Europass.pdf">Scarica CV</a><a target="_blank" rel="noreferrer noopener" class="btn btn-ghost" data-i18n="recruiter.viewCv" href="/assets/cv/Manuel_Zambelli_CV_Europass.pdf">Apri CV</a>
+<a class="btn btn-ghost" data-i18n="recruiter.contact" href="#contact">Contatto</a>
+</div>
+</div>
+<div class="mt-6 grid gap-4 md:grid-cols-3">
+<div class="rounded-2xl border border-black/10 p-4 bg-black/[0.02]">
+<p class="text-sm font-semibold" data-i18n="recruiter.highlights">Highlights</p>
+<ul class="mt-3 grid gap-2 text-sm text-subtle" id="recruiter-highlights"></ul>
+</div>
+<div class="rounded-2xl border border-black/10 p-4 bg-black/[0.02] md:col-span-2">
+<p class="text-sm font-semibold" data-i18n="recruiter.bestProjects">Progetti migliori</p>
+<div class="mt-3 grid gap-3 sm:grid-cols-2" id="recruiter-projects"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ABOUT -->
+<section class="py-14" id="about">
+<div class="mx-auto max-w-6xl px-6">
+<div class="grid gap-8 md:grid-cols-12 items-start">
+<div class="md:col-span-4" data-reveal="">
+<h2 class="text-2xl font-bold" data-i18n="nav.about">Chi sono</h2>
+<p class="mt-2 text-soft" data-i18n="about.subtitle"></p>
+</div>
+<div class="md:col-span-8 grid gap-4" data-reveal="">
+<div class="card p-6">
+<p class="text-sm font-semibold tracking-wide" data-i18n="about.bioTitle">Bio</p>
+<p class="mt-3 text-subtle leading-relaxed" id="about-description"></p>
+<div class="mt-4 flex flex-wrap gap-2" id="about-traits"></div>
+<div class="mt-6 flex flex-wrap gap-3"><a class="btn btn-primary" data-i18n="about.downloadCv" download="download" href="/assets/cv/Manuel_Zambelli_CV_Europass.pdf">Scarica CV (Europass)</a><a target="_blank" rel="noreferrer noopener" class="btn btn-ghost" data-i18n="about.viewCv" href="/assets/cv/Manuel_Zambelli_CV_Europass.pdf">Apri CV</a></div></div>
+<div class="grid gap-4 sm:grid-cols-2" id="about-status"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- EXPERIENCE -->
+<section class="py-14" id="experience">
+<div class="mx-auto max-w-6xl px-6">
+<div class="flex items-end justify-between gap-4" data-reveal="">
+<div>
+<h2 class="text-2xl font-bold" data-i18n="nav.studies">Studi</h2>
+<p class="mt-2 text-soft" data-i18n="experience.subtitle">Percorso e traguardi principali.</p>
+</div>
+</div>
+<div class="mt-6 grid gap-4 md:grid-cols-2" id="experience-grid"></div>
+</div>
+</section>
+<!-- SKILLS -->
+<section class="py-14" id="skills">
+<div class="mx-auto max-w-6xl px-6">
+<div data-reveal="">
+<h2 class="text-2xl font-bold" data-i18n="nav.skills">Competenze</h2>
+<p class="mt-2 text-soft" data-i18n="skills.subtitle">Tecnologie e strumenti.</p>
+</div>
+<div class="mt-6 grid gap-4 md:grid-cols-3" id="skills-grid"></div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section class="py-14" id="projects">
+<div class="mx-auto max-w-6xl px-6">
+<div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between" data-reveal="">
+<div>
+<h2 class="text-2xl font-bold" data-i18n="nav.projects">Progetti</h2>
+<p class="mt-2 text-soft" data-i18n="projects.subtitle">I miei progetti ed esperienze personali</p>
+</div>
+<div class="flex flex-wrap gap-2" id="project-filters"></div>
+</div>
+<div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between" data-reveal="">
+<div class="w-full sm:max-w-sm">
+<input autocomplete="off" class="field w-full" data-i18n-aria-label="projects.searchAria" data-i18n-placeholder="projects.searchPlaceholder" id="projects-search" placeholder="Cerca progetti..." type="search"/>
+</div>
+</div>
+<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="projects-grid"></div>
+<div class="mt-6 flex flex-col items-center justify-center gap-2">
+<p aria-live="polite" class="text-xs text-faint" id="projects-count"></p>
+<button class="btn btn-ghost hidden" data-i18n="projects.showAll" id="projects-toggle" type="button">Mostra tutto</button>
+</div>
+</div>
+</section>
+<section class="py-14" id="extras">
+<div class="mx-auto max-w-6xl px-6">
+<div class="flex items-end justify-between gap-4" data-reveal="">
+<div>
+<h2 class="text-2xl font-bold" data-i18n="nav.extras">Extra</h2>
+<p class="mt-2 text-soft" data-i18n="extras.subtitle">Certificazioni, volontariato, premi e lingue.</p>
+</div>
+</div>
+<div class="mt-6 grid gap-6 lg:grid-cols-12">
+<div class="lg:col-span-4" data-reveal="">
+<h3 class="text-lg font-bold" data-i18n="extras.certifications">Certificazioni</h3>
+<div class="mt-3 grid gap-3" id="certifications-grid"></div>
+</div>
+<div class="lg:col-span-4" data-reveal="">
+<h3 class="text-lg font-bold" data-i18n="extras.volunteering">Volontariato</h3>
+<div class="mt-3 grid gap-3" id="volunteering-grid"></div>
+</div>
+<div class="lg:col-span-4" data-reveal="">
+<h3 class="text-lg font-bold" data-i18n="extras.awardsLanguages">Riconoscimenti &amp; lingue</h3>
+<div class="mt-3 grid gap-3" id="awards-grid"></div>
+<div class="mt-3 grid gap-3" id="languages-grid"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SOCIAL -->
+<section class="py-14" id="social">
+<div class="mx-auto max-w-6xl px-6">
+<div class="grid gap-8 md:grid-cols-12 items-start">
+<div class="md:col-span-4" data-reveal="">
+<h2 class="text-2xl font-bold" data-i18n="nav.social">Social</h2>
+<p class="mt-2 text-soft" data-i18n="social.subtitle">Link rapidi.</p>
+</div>
+<div class="md:col-span-8" data-reveal="">
+<div class="grid gap-3 sm:grid-cols-3" id="social-links"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section class="py-14 pb-24" id="contact">
+<div class="mx-auto max-w-6xl px-6">
+<div class="grid gap-8 md:grid-cols-12 items-start">
+<div class="md:col-span-4" data-reveal="">
+<h2 class="text-2xl font-bold" data-i18n="nav.contact">Contatti</h2>
+<p class="mt-2 text-soft" data-i18n="contact.subtitle">Scrivimi: ti rispondo via email il prima possibile.</p>
+<div class="mt-4 flex flex-col gap-2">
+<a class="btn btn-ghost justify-start" href="#" id="contact-linkedin" rel="noreferrer" target="_blank">LinkedIn</a>
+<a class="btn btn-ghost justify-start" data-content="email" href="mailto:">Email</a>
+<a class="btn btn-ghost justify-start" href="tel:+393338678617" id="contact-number">+39 333 867 8617</a>
+<div class="h-px bg-black/10 my-2"></div><button class="btn btn-ghost justify-start text-left" data-i18n="contact.copyEmail" id="contact-copy-email" type="button">Copia email</button><button class="btn btn-ghost justify-start text-left" data-i18n="contact.copyLinkedIn" id="contact-copy-linkedin" type="button">Copia LinkedIn</button><a class="btn btn-ghost justify-start" data-i18n="contact.openWhatsApp" href="#" id="contact-whatsapp">Apri WhatsApp</a><p class="mt-3 text-xs text-soft" data-i18n="contact.responseTime">Rispondo di solito entro 24h.</p></div>
+</div>
+<div class="md:col-span-8" data-reveal="">
+<form action="https://formsubmit.co/info@manuelzambelli.it" autocomplete="on" class="card p-6" id="contact-form" method="POST">
+<div class="grid gap-4 sm:grid-cols-2">
+<label class="grid gap-2">
+<span class="text-sm font-semibold" data-i18n="form.nameLabel">Nome</span>
+<input class="rounded-2xl border border-black/10 bg-black/[0.02] px-4 py-3 outline-none focus:ring-2 focus:ring-black/10" data-i18n-placeholder="form.namePlaceholder" name="name" placeholder="Il tuo nome" required=""/>
+<p class="text-sm text-red-600/80" data-error="name"></p>
+</label>
+<label class="grid gap-2">
+<span class="text-sm font-semibold" data-i18n="form.emailLabel">Email</span>
+<input class="rounded-2xl border border-black/10 bg-black/[0.02] px-4 py-3 outline-none focus:ring-2 focus:ring-black/10" data-i18n-placeholder="form.emailPlaceholder" name="email" placeholder="nome@email.com" required="" type="email"/>
+<p class="text-sm text-red-600/80" data-error="email"></p>
+</label>
+</div>
+<label class="mt-4 grid gap-2">
+<span class="text-sm font-semibold" data-i18n="form.messageLabel">Messaggio</span>
+<textarea class="rounded-2xl border border-black/10 bg-black/[0.02] px-4 py-3 outline-none focus:ring-2 focus:ring-black/10" data-i18n-placeholder="form.messagePlaceholder" name="message" placeholder="Scrivi qui..." required="" rows="5"></textarea>
+<p class="text-sm text-red-600/80" data-error="message"></p>
+</label>
+<div class="mt-5 grid gap-4 sm:grid-cols-2">
+<div>
+<span class="text-sm font-semibold" data-i18n="form.captchaLabel">Verifica</span>
+<div class="mt-2 flex items-center gap-3">
+<canvas class="captcha-box h-14 w-[190px]" height="56" id="captcha-canvas" width="190"></canvas>
+<button aria-label="Rigenera captcha" class="btn btn-ghost" data-i18n="form.captchaRefresh" data-i18n-aria-label="form.captchaRefreshAria" id="captcha-refresh" type="button">Rigenera</button>
+</div>
+<input autocomplete="off" class="mt-3 w-full rounded-2xl border border-black/10 bg-black/[0.02] px-4 py-3 outline-none focus:ring-2 focus:ring-black/10" data-i18n-placeholder="form.captchaPlaceholder" inputmode="text" name="captcha" placeholder="Inserisci il codice" required=""/>
+<p class="text-sm text-red-600/80" data-error="captcha"></p>
+</div>
+<label class="grid gap-2">
+<span class="text-sm font-semibold" data-i18n="form.consentLabel">Consenso</span>
+<div class="flex items-start gap-3 rounded-2xl border border-black/10 bg-black/[0.02] p-4">
+<input class="mt-1 h-4 w-4" name="consent" required="" type="checkbox"/>
+<div class="text-sm text-subtle leading-relaxed">
+<p><span data-i18n="form.consentText">Accetto Privacy e Cookie Policy.</span></p>
+<div class="mt-2 flex flex-wrap gap-3 text-sm">
+<button class="underline underline-offset-4 underline-soft" data-i18n="footer.privacy" data-open-legal="privacy" type="button">Privacy Policy</button>
+<button class="underline underline-offset-4 underline-soft" data-i18n="footer.cookies" data-open-legal="cookies" type="button">Cookie Policy</button>
+</div>
+</div>
+</div>
+<p class="text-sm text-red-600/80" data-error="consent"></p>
+</label>
+</div>
+<!-- Honeypot + FormSubmit settings -->
+<input autocomplete="off" class="hidden" name="_honey" tabindex="-1" type="text"/>
+<input name="_replyto" type="hidden" value=""/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_subject" type="hidden" value="Nuovo contatto dal portfolio"/>
+<input name="_next" type="hidden" value="index.html?sent=1#contact"/>
+<div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+<p class="text-xs text-faint">
+                  © <span id="year"></span> <span data-content="name"></span>
+</p>
+<button class="btn btn-primary" data-i18n="form.submit" type="submit">Invia</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="mx-auto max-w-6xl px-6 pb-10">
+<div class="card px-5 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between" style="box-shadow:none">
+<p class="text-xs text-faint">© <span id="year2"></span> <span data-content="name"></span></p>
+<p>Questo sito è un <b>portfolio personale</b> e non rappresenta un'attività commerciale</p>
+<div class="flex flex-wrap gap-3 text-xs">
+<button class="link-soft" data-i18n="footer.privacy" data-open-legal="privacy" type="button">Privacy Policy</button>
+<button class="link-soft" data-i18n="footer.cookies" data-open-legal="cookies" type="button">Cookie Policy</button>
+<button class="link-soft" data-i18n="footer.manageConsent" data-open-consent="" type="button">Gestisci privacy</button>
+</div>
+</div>
+</footer>
+<!-- Project modal (kept for JS) -->
+<div class="fixed inset-0 z-50 hidden" id="project-modal">
+<div class="backdrop absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div class="relative mx-auto mt-16 w-[min(920px,calc(100vw-36px))] card p-6 max-h-[80vh] overflow-auto">
+<div class="flex items-start justify-between gap-4">
+<div class="min-w-0">
+<p class="text-xl font-bold leading-snug" id="modal-title"></p>
+<p class="mt-1 text-sm text-muted" id="modal-sub"></p>
+</div>
+<button aria-label="Chiudi" class="btn btn-ghost" data-i18n="modal.close" data-i18n-aria-label="modal.close" id="modal-close" type="button">Chiudi</button>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<a class="btn btn-primary hidden" data-i18n="modal.open" href="#" id="modal-link" rel="noreferrer" target="_blank">Apri</a>
+<button class="btn btn-ghost" data-i18n="modal.copy" id="modal-copy" type="button">Copia link</button>
+</div>
+<div class="mt-5" id="modal-body"></div>
+</div>
+</div>
+<!-- Legal modal (Privacy / Cookie policy) -->
+<div aria-hidden="true" class="fixed inset-0 z-[55] hidden" id="legal-modal">
+<div class="backdrop absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div aria-modal="true" class="relative mx-auto mt-16 w-[min(920px,calc(100vw-36px))] card p-6 max-h-[80vh] overflow-auto" role="dialog">
+<div class="flex items-start justify-between gap-4">
+<p class="text-xl font-bold leading-snug" data-i18n="legal.title">Privacy e Cookie Policy</p>
+<button aria-label="Chiudi" class="btn btn-ghost" data-i18n="modal.close" data-i18n-aria-label="modal.close" id="legal-close" type="button">Chiudi</button>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<button class="btn btn-ghost legal-tab is-active" data-i18n="legal.tabPrivacy" data-legal-tab="privacy" type="button">Privacy</button>
+<button class="btn btn-ghost legal-tab" data-i18n="legal.tabCookies" data-legal-tab="cookies" type="button">Cookie</button>
+</div>
+<div class="legal-content mt-5" id="legal-content"></div>
+</div>
+</div>
+<!-- Consent gate (shown on first visit) -->
+<div aria-hidden="true" class="fixed inset-0 z-[60] hidden" id="consent-modal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div aria-modal="true" class="relative mx-auto mt-24 w-[min(720px,calc(100vw-36px))] card p-6" role="dialog">
+<p class="text-xl font-bold leading-snug" data-i18n="consent.title">Privacy &amp; Cookie</p>
+<p class="mt-3 text-subtle leading-relaxed" data-i18n="consent.text">Per continuare a usare il sito, conferma di aver letto e accettato la Privacy Policy e la Cookie Policy.</p>
+<div class="mt-5 flex flex-wrap gap-3">
+<button class="btn btn-primary" data-i18n="consent.accept" id="consent-accept" type="button">Accetta</button>
+<button class="btn btn-ghost" data-i18n="consent.decline" id="consent-decline" type="button">Rifiuta</button>
+<button class="btn btn-ghost" data-i18n="consent.read" data-open-legal="privacy" id="consent-read" type="button">Leggi policy</button>
+</div>
+<p class="mt-3 text-xs text-faint" data-i18n="consent.tip">Tip: puoi riaprire queste policy dal footer in qualsiasi momento.</p>
+</div>
+</div>
+<script id="i18n-it" type="application/json">{"nav.menuTitle":"Menu","nav.close":"Chiudi","nav.closeMenuAria":"Chiudi menu","nav.openMenuAria":"Apri menu","nav.about":"Chi sono","nav.studies":"Studi","nav.skills":"Competenze","nav.projects":"Progetti","nav.extras":"Extra","nav.social":"Social","nav.contact":"Contatti","toggle.lang":"Lingua","toggle.theme":"Tema","theme.light":"Chiaro","theme.dark":"Scuro","cta.seeProjects":"Vedi progetti","cta.about":"Chi sono","hero.pill":"Portfolio","hero.infoTitle":"Info","hero.info.name":"Nome","hero.info.role":"Ruolo","hero.info.availability":"Disponibilità","hero.info.contact":"Contatto","about.subtitle":"","about.bioTitle":"Bio","experience.subtitle":"Percorso e traguardi principali.","skills.subtitle":"Tecnologie e strumenti.","skills.project":"progetto","skills.projects":"progetti","projects.subtitle":"I miei progetti ed esperienze personali","projects.all":"Tutti","projects.details":"Dettagli","projects.link":"Link","projects.none":"Nessun progetto.","extras.subtitle":"Certificazioni, volontariato, premi e lingue.","extras.certifications":"Certificazioni","extras.volunteering":"Volontariato","extras.awardsLanguages":"Riconoscimenti & lingue","social.subtitle":"Link rapidi.","contact.subtitle":"Scrivimi: ti rispondo via email il prima possibile.","form.nameLabel":"Nome","form.namePlaceholder":"Il tuo nome","form.emailLabel":"Email","form.emailPlaceholder":"nome@email.com","form.messageLabel":"Messaggio","form.messagePlaceholder":"Scrivi qui...","form.captchaLabel":"Verifica","form.captchaRefresh":"Rigenera","form.captchaRefreshAria":"Rigenera captcha","form.captchaPlaceholder":"Inserisci il codice","form.consentLabel":"Consenso","form.consentText":"Accetto Privacy e Cookie Policy.","form.submit":"Invia","form.sending":"Invio…","form.firstTimeNote":"Se è il primo invio, FormSubmit potrebbe richiedere una conferma via email. Controlla anche la cartella Spam.","form.subject":"Nuovo contatto dal portfolio","form.sentTitle":"Messaggio inviato ✓","form.sentMsg":"Grazie! Ti rispondo al più presto.","form.failTitle":"Invio non riuscito","form.failMsg":"Riprova tra poco o contattami via email/social.","form.checkTitle":"Controlla i campi","form.checkMsg":"Correggi gli errori evidenziati e riprova.","form.err.name":"Inserisci un nome valido.","form.err.email":"Inserisci un'email valida.","form.err.message":"Scrivi almeno 10 caratteri.","form.err.consent":"Devi accettare Privacy e Cookie Policy.","form.err.captchaMissing":"Completa la verifica anti‑robot.","form.err.captchaWrong":"Codice errato. Riprova.","captcha.hint":"COPIA IL CODICE","modal.close":"Chiudi","modal.open":"Apri","modal.copy":"Copia link","modal.copiedTitle":"Copiato","modal.copiedMsg":"Link copiato negli appunti.","modal.copyFailTitle":"Impossibile copiare","modal.copyFailMsg":"Copia manualmente il link.","toast.closeAria":"Chiudi","fallback.education":"Aggiungi education in js/content.js.","fallback.skills":"Aggiungi stack nei progetti in js/content.js.","fallback.certifications":"Aggiungi certifications in js/content.js.","fallback.volunteering":"Aggiungi volunteering in js/content.js.","fallback.social":"Aggiungi i link social in js/content.js.","general.openSite":"Vai al sito","footer.privacy":"Privacy Policy","footer.cookies":"Cookie Policy","footer.manageConsent":"Gestisci privacy","legal.title":"Privacy e Cookie Policy","legal.tabPrivacy":"Privacy","legal.tabCookies":"Cookie","legal.privacyHtml":"<p><strong>Ultimo aggiornamento:</strong> [gg/mm/aaaa]</p>\n<p>Questa informativa descrive come vengono trattati i dati personali degli utenti che visitano questo sito (“Sito”).</p>\n\n<h3>1) Titolare del trattamento</h3>\n<p><strong>Manuel Zambelli</strong>, Verona (Italia).<br/>\nContatto: <strong>[EMAIL_PRIVACY]</strong></p>\n\n<h3>2) Dati trattati</h3>\n<h4>2.1 Dati di navigazione e statistiche (Analytics)</h4>\n<p>Il Sito utilizza <strong>Umami Analytics</strong> (<em>self-hosted</em>) per raccogliere statistiche di visita e migliorare i contenuti. I dati raccolti sono di natura tecnica e legati all’utilizzo del Sito (ad es. pagine viste, durata visita, referrer, tipo di dispositivo/browser, sistema operativo).</p>\n<p>L’analytics è configurato in modalità <strong>privacy-friendly</strong>: nessuna profilazione pubblicitaria, nessuna vendita dei dati e, di norma, <strong>senza cookie</strong> (statistiche aggregate/pseudonimizzate).</p>\n\n<h4>2.2 Dati forniti volontariamente (Form contatti)</h4>\n<p>Se invii un messaggio tramite il form, vengono trattati i dati che inserisci (es. nome, email, contenuto del messaggio) al solo scopo di rispondere alla richiesta e gestire eventuali comunicazioni successive.</p>\n<p>Se il form usa un servizio esterno per l’inoltro (es. <em>form-to-email</em>), tale fornitore può trattare i dati secondo i propri termini e informative.</p>\n\n<h4>2.3 Preferenze salvate sul dispositivo</h4>\n<p>Il Sito salva alcune preferenze nel browser tramite <strong>localStorage</strong> (non cookie), ad esempio: tema <em>light/dark</em>, lingua (IT/EN) e stato di scelta privacy/cookie. Queste informazioni restano sul tuo dispositivo e non sono usate per identificarti.</p>\n\n<h3>3) Finalità e basi giuridiche</h3>\n<ul>\n  <li><strong>Statistiche e miglioramento del Sito</strong>: legittimo interesse del Titolare (analytics non invasivo e privo di profilazione); in alternativa, ove richiesto, consenso.</li>\n  <li><strong>Risposta a richieste dell’utente</strong>: esecuzione di misure precontrattuali e/o consenso (a seconda del contenuto della richiesta).</li>\n  <li><strong>Sicurezza e funzionamento tecnico</strong>: legittimo interesse.</li>\n</ul>\n\n<h3>4) Destinatari</h3>\n<p>I dati possono essere trattati da fornitori tecnici (hosting del Sito, provider email) e dal sistema analytics Umami (self-hosted), per quanto necessario alle finalità sopra indicate.</p>\n\n<h3>5) Trasferimenti extra UE</h3>\n<p>Se uno dei fornitori coinvolti tratta dati fuori dallo Spazio Economico Europeo, il trasferimento avverrà nel rispetto del GDPR (es. clausole contrattuali standard o decisioni di adeguatezza).</p>\n\n<h3>6) Conservazione</h3>\n<ul>\n  <li>Dati dei messaggi di contatto: per il tempo necessario a gestire la richiesta e comunque non oltre <strong>[PERIODO_CONSERVAZIONE]</strong>, salvo obblighi di legge o tutela in sede legale.</li>\n  <li>Dati analytics: conservati secondo le impostazioni di Umami, idealmente per <strong>[PERIODO_ANALYTICS]</strong>.</li>\n</ul>\n\n<h3>7) Diritti dell’utente</h3>\n<p>Puoi esercitare i diritti previsti dal GDPR (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità) scrivendo a <strong>[EMAIL_PRIVACY]</strong>. Hai inoltre diritto di proporre reclamo al <strong>Garante per la Protezione dei Dati Personali</strong>.</p>\n\n<h3>8) Modifiche</h3>\n<p>Il Titolare può aggiornare questa informativa. La data di aggiornamento è indicata all’inizio.</p>\n","legal.cookiesHtml":"<p><strong>Ultimo aggiornamento:</strong> [gg/mm/aaaa]</p>\n\n<h3>1) Cosa sono i cookie</h3>\n<p>I cookie sono piccoli file che i siti possono salvare sul dispositivo dell’utente tramite il browser. Esistono anche tecnologie simili, come il <strong>localStorage</strong>.</p>\n\n<h3>2) Cosa usa questo Sito</h3>\n<h4>2.1 Cookie</h4>\n<p>Questo Sito non utilizza cookie di profilazione. Eventuali cookie tecnici possono dipendere dal provider di hosting o da componenti strettamente necessari al funzionamento.</p>\n\n<h4>2.2 localStorage (preferenze)</h4>\n<p>Il Sito utilizza <strong>localStorage</strong> per memorizzare tema (light/dark), lingua (IT/EN) e la scelta privacy/cookie. Queste preferenze non sono usate per profilazione e restano sul tuo dispositivo.</p>\n\n<h4>2.3 Statistiche (Umami self-hosted)</h4>\n<p>Per misurare l’utilizzo del Sito vengono raccolte statistiche tramite <strong>Umami</strong> in configurazione <strong>privacy-friendly</strong>, generalmente <strong>cookie-less</strong>. Le informazioni sono usate solo in forma aggregata/pseudonimizzata per capire come viene utilizzato il Sito e migliorarlo.</p>\n\n<h3>3) Come gestire cookie e dati locali</h3>\n<p>Puoi cancellare cookie e dati locali (localStorage) dalle impostazioni del browser o usare la navigazione in incognito. Disabilitare cookie tecnici può influire su alcune funzionalità, se presenti.</p>\n","consent.title":"Privacy & Cookie","consent.text":"Usiamo statistiche anonime (Umami) e salviamo tema/lingua sul tuo dispositivo. Puoi accettare o rifiutare le statistiche.","consent.accept":"Accetta","consent.read":"Leggi policy","consent.savedTitle":"Preferenze salvate ✓","consent.savedMsg":"Grazie! Puoi cambiare la scelta dal footer in qualsiasi momento.","consent.tip":"Tip: puoi riaprire queste policy dal footer in qualsiasi momento.","projects.searchPlaceholder":"Cerca progetti...","projects.searchAria":"Cerca tra i progetti","projects.showAll":"Mostra tutto","projects.showLess":"Mostra meno","projects.countTpl":"{shown} di {total}","projects.countResultsTpl":"Risultati: {shown} di {total}","consent.decline":"Rifiuta","consent.acceptedMsg":"Analytics attive.","consent.declinedMsg":"Analytics disattivate.","error.backHome":"Torna alla home","error.contact":"Contattami","error.reload":"Riprova","error.tipTitle":"Suggerimenti","error.tip1":"Controlla che l’URL sia corretto.","error.tip2":"Torna alla home e usa il menu o la ricerca progetti.","error404.kicker":"Errore 404","error404.title":"Pagina non trovata","error404.subtitle":"Il link che hai seguito non esiste o è stato spostato.","error512.kicker":"Errore 512","error512.title":"Problema temporaneo","error512.subtitle":"Il server ha restituito un errore. Riprova tra poco."}</script>
+<script id="i18n-en" type="application/json">{"nav.menuTitle":"Menu","nav.close":"Close","nav.closeMenuAria":"Close menu","nav.openMenuAria":"Open menu","nav.about":"About","nav.studies":"Education","nav.skills":"Skills","nav.projects":"Projects","nav.extras":"Extras","nav.social":"Social","nav.contact":"Contact","toggle.lang":"Language","toggle.theme":"Theme","theme.light":"Light","theme.dark":"Dark","cta.seeProjects":"See projects","cta.about":"About","hero.pill":"Portfolio","hero.infoTitle":"Info","hero.info.name":"Name","hero.info.role":"Role","hero.info.availability":"Availability","hero.info.contact":"Contact","about.subtitle":"","about.bioTitle":"Bio","experience.subtitle":"Education and key milestones.","skills.subtitle":"Technologies and tools.","skills.project":"project","skills.projects":"projects","projects.subtitle":"My projects and experiences","projects.all":"All","projects.details":"Details","projects.link":"Link","projects.none":"No projects.","extras.subtitle":"Certifications, volunteering, awards and languages.","extras.certifications":"Certifications","extras.volunteering":"Volunteering","extras.awardsLanguages":"Awards & languages","social.subtitle":"Quick links.","contact.subtitle":"Write to me — I'll reply by email as soon as possible.","form.nameLabel":"Name","form.namePlaceholder":"Your name","form.emailLabel":"Email","form.emailPlaceholder":"name@email.com","form.messageLabel":"Message","form.messagePlaceholder":"Write here...","form.captchaLabel":"Verification","form.captchaRefresh":"Refresh","form.captchaRefreshAria":"Refresh captcha","form.captchaPlaceholder":"Type the code","form.consentLabel":"Consent","form.consentText":"I accept the Privacy and Cookie Policy.","form.submit":"Send","form.sending":"Sending…","form.firstTimeNote":"If this is your first submission, FormSubmit may require email confirmation. Also check Spam.","form.subject":"New contact from portfolio","form.sentTitle":"Message sent ✓","form.sentMsg":"Thanks! I'll reply as soon as possible.","form.failTitle":"Send failed","form.failMsg":"Try again later or contact me via email/social.","form.checkTitle":"Check the fields","form.checkMsg":"Fix the highlighted errors and try again.","form.err.name":"Enter a valid name.","form.err.email":"Enter a valid email.","form.err.message":"Write at least 10 characters.","form.err.consent":"You must accept the privacy policy.","form.err.captchaMissing":"Complete the anti‑bot check.","form.err.captchaWrong":"Wrong code. Try again.","captcha.hint":"TYPE THE CODE","modal.close":"Close","modal.open":"Open","modal.copy":"Copy link","modal.copiedTitle":"Copied","modal.copiedMsg":"Link copied to clipboard.","modal.copyFailTitle":"Couldn't copy","modal.copyFailMsg":"Please copy the link manually.","toast.closeAria":"Close","fallback.education":"Add education in js/content.js.","fallback.skills":"Add project stack in js/content.js.","fallback.certifications":"Add certifications in js/content.js.","fallback.volunteering":"Add volunteering in js/content.js.","fallback.social":"Add social links in js/content.js.","general.openSite":"Open site","footer.privacy":"Privacy Policy","footer.cookies":"Cookie Policy","footer.manageConsent":"Manage privacy","legal.title":"Privacy & Cookie Policy","legal.tabPrivacy":"Privacy","legal.tabCookies":"Cookies","legal.privacyHtml":"<p><strong>Last updated:</strong> [dd/mm/yyyy]</p>\n<p>This notice explains how personal data is processed when you visit this website (“Site”).</p>\n\n<h3>1) Data Controller</h3>\n<p><strong>Manuel Zambelli</strong>, Verona (Italy).<br/>\nContact: <strong>[PRIVACY_EMAIL]</strong></p>\n\n<h3>2) Data we process</h3>\n<h4>2.1 Usage statistics (Analytics)</h4>\n<p>The Site uses <strong>Umami Analytics</strong> (<em>self-hosted</em>) to understand traffic and improve content. Collected data is technical usage information (e.g. pages viewed, session duration, referrer, device/browser type, operating system).</p>\n<p>Analytics is configured in a <strong>privacy-friendly</strong> way: no advertising profiling, no data selling and typically <strong>cookie-less</strong> (aggregated/pseudonymised statistics).</p>\n\n<h4>2.2 Contact data</h4>\n<p>If you submit the contact form, we process the data you provide (e.g. name, email, message) solely to reply and manage any follow-up communication.</p>\n<p>If the form uses a third-party forwarding service (e.g. form-to-email), that provider may process data under its own terms and notices.</p>\n\n<h4>2.3 Preferences stored on your device</h4>\n<p>The Site stores certain preferences via <strong>localStorage</strong> (not cookies), such as light/dark theme, language (IT/EN) and the privacy/cookie choice. This information stays on your device and is not used to identify you.</p>\n\n<h3>3) Purposes & lawful bases</h3>\n<ul>\n  <li><strong>Analytics and Site improvement</strong>: legitimate interests (non-invasive, no profiling); alternatively, where required, consent.</li>\n  <li><strong>Responding to enquiries</strong>: pre-contractual steps and/or consent depending on the request.</li>\n  <li><strong>Security and technical operation</strong>: legitimate interests.</li>\n</ul>\n\n<h3>4) Recipients</h3>\n<p>Data may be processed by technical providers (hosting, email provider) and the self-hosted analytics system (Umami), only as necessary for the purposes above.</p>\n\n<h3>5) International transfers</h3>\n<p>If any provider processes data outside the EEA, appropriate GDPR safeguards will apply (e.g. SCCs or adequacy decisions).</p>\n\n<h3>6) Retention</h3>\n<ul>\n  <li>Contact messages: kept for the time needed to handle the request and no longer than <strong>[RETENTION_CONTACT]</strong>, unless legally required.</li>\n  <li>Analytics: stored according to Umami self-hosted settings, ideally for <strong>[RETENTION_ANALYTICS]</strong>.</li>\n</ul>\n\n<h3>7) Your rights</h3>\n<p>You can exercise GDPR rights by contacting <strong>[PRIVACY_EMAIL]</strong>. You may also lodge a complaint with the relevant supervisory authority.</p>\n\n<h3>8) Changes</h3>\n<p>We may update this notice. The update date is shown at the top.</p>\n","legal.cookiesHtml":"<p><strong>Last updated:</strong> [dd/mm/yyyy]</p>\n\n<h3>1) What cookies are</h3>\n<p>Cookies are small files a website may store on your device via your browser. Similar technologies include <strong>localStorage</strong>.</p>\n\n<h3>2) What this Site uses</h3>\n<h4>2.1 Cookies</h4>\n<p>This Site does not use advertising/profiling cookies. Any essential/technical cookies, if present, may depend on the hosting provider or strictly necessary components.</p>\n\n<h4>2.2 localStorage (preferences)</h4>\n<p>The Site uses <strong>localStorage</strong> to store theme (light/dark), language (IT/EN) and the privacy/cookie choice. These preferences are not used for profiling and remain on your device.</p>\n\n<h4>2.3 Analytics (Umami self-hosted)</h4>\n<p>The Site uses <strong>Umami</strong> in a <strong>privacy-friendly</strong>, typically <strong>cookie-less</strong> configuration to produce aggregated/pseudonymised statistics and improve the Site.</p>\n\n<h3>3) Managing cookies and local data</h3>\n<p>You can delete cookies and local data (localStorage) via your browser settings or use private browsing. Disabling essential cookies may affect some functionality, if present.</p>\n","consent.title":"Privacy & Cookies","consent.text":"We use privacy-friendly analytics (Umami) and store theme/language on your device. You can accept or decline analytics.","consent.accept":"Accept","consent.read":"Read policies","consent.savedTitle":"Preferences saved ✓","consent.savedMsg":"Thanks! You can change this choice anytime from the footer.","consent.tip":"Tip: you can reopen these policies from the footer at any time.","projects.searchPlaceholder":"Search projects...","projects.searchAria":"Search within projects","projects.showAll":"Show all","projects.showLess":"Show less","projects.countTpl":"{shown} of {total}","projects.countResultsTpl":"Results: {shown} of {total}","consent.decline":"Decline","consent.acceptedMsg":"Analytics enabled.","consent.declinedMsg":"Analytics disabled.","error.backHome":"Back to home","error.contact":"Contact me","error.reload":"Try again","error.tipTitle":"Tips","error.tip1":"Check that the URL is correct.","error.tip2":"Go back to the homepage and use the menu or project search.","error404.kicker":"Error 404","error404.title":"Page not found","error404.subtitle":"The page you’re looking for doesn’t exist or has been moved.","error512.kicker":"Error 512","error512.title":"Temporary issue","error512.subtitle":"The server returned an error. Please try again in a moment."}</script>
+<script src="js/i18n.js"></script>
+<script src="js/content.js"></script>
+<script src="js/three-bg.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

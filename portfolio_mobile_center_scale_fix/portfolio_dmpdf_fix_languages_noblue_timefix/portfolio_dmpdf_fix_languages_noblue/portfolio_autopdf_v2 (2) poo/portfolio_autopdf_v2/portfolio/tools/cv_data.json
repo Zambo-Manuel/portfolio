@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "output": "assets/cv/Manuel_Zambelli_CV_Europass.pdf",
+    "default_lang": "it"
+  },
+  "it": {
+    "name": "Manuel Zambelli",
+    "subtitle": "Studente • Verona, Veneto, Italia",
+    "contacts": [
+      {
+        "label": "Email",
+        "value": "info@manuelzambelli.it"
+      },
+      {
+        "label": "Telefono",
+        "value": "+39 333 867 8617"
+      },
+      {
+        "label": "Località",
+        "value": "Verona, Veneto, Italia"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "https://www.linkedin.com/in/manuelzambelli10/"
+      },
+      {
+        "label": "Instagram",
+        "value": "https://www.instagram.com/zambo10_/"
+      }
+    ],
+    "profile_title": "Profilo",
+    "profile": [
+      "Sono Manuel Zambelli, uno studente curioso e determinato, sempre alla ricerca di nuove occasioni per imparare e migliorarmi.",
+      "Credo nel valore della collaborazione e della responsabilità: nei progetti ben strutturati e nel lavoro di squadra riesco a dare il meglio di me."
+    ],
+    "strengths_title": "Punti di forza",
+    "strengths": [
+      "Curioso",
+      "Determinato",
+      "Collaborativo",
+      "Affidabile",
+      "Problem solver"
+    ],
+    "languages_title": "Lingue",
+    "languages": [
+      {
+        "name": "Italiano",
+        "level": "Madrelingua"
+      },
+      {
+        "name": "Inglese",
+        "level": "Scolastico / operativo"
+      }
+    ],
+    "skills_title": "Competenze",
+    "skills": [
+      "Teamwork",
+      "Communication",
+      "Canva",
+      "Graphic Design",
+      "WordPress",
+      "HTML",
+      "CSS",
+      "Microsoft Excel",
+      "JavaScript"
+    ],
+    "education_title": "Formazione",
+    "education": [
+      {
+        "degree": "Informatica",
+        "school": "ITIS G. Marconi — Verona",
+        "years": "set 2024 — giu 2029",
+        "bullets": [
+          "Progetti in gruppo e attività di collaborazione (peer-to-peer)",
+          "Sviluppo web con CMS (WordPress) e attenzione al design",
+          "Competenze digitali: creazione di contenuti social per l'istituto"
+        ]
+      }
+    ],
+    "projects_title": "Progetti",
+    "projects": [
+      {
+        "title": "Marconi Peer‑To‑Peer",
+        "subtitle": "Peer tutoring • nov 2025 — presente",
+        "description": "Supporto tra studenti nel pomeriggio: studio e comprensione degli argomenti scolastici, collaborazione e metodo.",
+        "stack": "Teamwork, Communication"
+      },
+      {
+        "title": "Team Marconi Media LAB",
+        "subtitle": "Contenuti digitali • ott 2025 — presente",
+        "description": "Creazione di contenuti digitali per l’ITI G. Marconi (VR): grafica, comunicazione e pubblicazione su canali social.",
+        "stack": "Canva, Graphic Design"
+      },
+      {
+        "title": "Sito ufficiale Corpo Bandistico di Colognola ai Colli",
+        "subtitle": "Website • CMS WordPress",
+        "description": "Realizzazione e gestione di un sito web per un’associazione locale: struttura contenuti, navigazione e aggiornamenti.",
+        "stack": "WordPress, HTML, CSS"
+      },
+      {
+        "title": "Fogli di calcolo avanzato",
+        "subtitle": "Percorso Multilinguismo & STEM • 10 ore",
+        "description": "Approfondimento su Excel: funzioni, organizzazione dati e tabelle utili allo studio e ai progetti.",
+        "stack": "Microsoft Excel"
+      },
+      {
+        "title": "Siti web con CMS (WordPress)",
+        "subtitle": "Percorso Multilinguismo & STEM • 25 ore",
+        "description": "Siti web con CMS: struttura pagine, gestione contenuti e buone pratiche per un sito chiaro e fruibile.",
+        "stack": "WordPress, HTML, CSS, JavaScript"
+      }
+    ],
+    "certifications_title": "Certificazioni",
+    "certifications": [
+      {
+        "title": "Corso Sicurezza Base Lavoratori/Studenti — Ed. 2025",
+        "issuer": "Gruppo Spaggiari Parma",
+        "date": "feb 2025",
+        "note": "Formazione base sulla sicurezza nei luoghi di lavoro."
+      }
+    ]
+  },
+  "en": {
+    "name": "Manuel Zambelli",
+    "subtitle": "Student • Verona, Veneto, Italy",
+    "contacts": [
+      {
+        "label": "Email",
+        "value": "info@manuelzambelli.it"
+      },
+      {
+        "label": "Phone",
+        "value": "+39 333 867 8617"
+      },
+      {
+        "label": "Location",
+        "value": "Verona, Veneto, Italy"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "https://www.linkedin.com/in/manuelzambelli10/"
+      },
+      {
+        "label": "Instagram",
+        "value": "https://www.instagram.com/zambo10_/"
+      }
+    ],
+    "profile_title": "Profile",
+    "profile": [
+      "I am Manuel Zambelli, a curious and determined student, always looking for new opportunities to learn and improve.",
+      "I believe in collaboration and responsibility: I do my best in well‑structured projects and teamwork."
+    ],
+    "strengths_title": "Strengths",
+    "strengths": [
+      "Curious",
+      "Determined",
+      "Team player",
+      "Reliable",
+      "Problem solver"
+    ],
+    "languages_title": "Languages",
+    "languages": [
+      {
+        "name": "Italian",
+        "level": "Native"
+      },
+      {
+        "name": "English",
+        "level": "School / working level"
+      }
+    ],
+    "skills_title": "Skills",
+    "skills": [
+      "Teamwork",
+      "Communication",
+      "Canva",
+      "Graphic Design",
+      "WordPress",
+      "HTML",
+      "CSS",
+      "Microsoft Excel",
+      "JavaScript"
+    ],
+    "education_title": "Education",
+    "education": [
+      {
+        "degree": "Computer Science",
+        "school": "ITIS G. Marconi — Verona",
+        "years": "Sep 2024 — Jun 2029",
+        "bullets": [
+          "Group projects and collaboration activities (peer-to-peer)",
+          "Websites built with a CMS (WordPress) with attention to design",
+          "Digital skills: creating social media content for the school"
+        ]
+      }
+    ],
+    "projects_title": "Projects",
+    "projects": [
+      {
+        "title": "Marconi Peer‑To‑Peer",
+        "subtitle": "Peer tutoring • Nov 2025 — present",
+        "description": "Peer tutoring: supporting students after school, improving collaboration and study methods.",
+        "stack": "Teamwork, Communication"
+      },
+      {
+        "title": "Marconi Media LAB team",
+        "subtitle": "Digital content • Oct 2025 — present",
+        "description": "Creating digital content for the school: graphics, communication, and social posts.",
+        "stack": "Canva, Graphic Design"
+      },
+      {
+        "title": "Official website — Corpo Bandistico di Colognola ai Colli",
+        "subtitle": "Website • WordPress CMS",
+        "description": "Built and manage a website for a local association: content structure, navigation and updates.",
+        "stack": "WordPress, HTML, CSS"
+      },
+      {
+        "title": "Advanced spreadsheets",
+        "subtitle": "Multilingualism & STEM track • 10 hours",
+        "description": "Advanced spreadsheets: functions, data organisation and useful tables for study and projects.",
+        "stack": "Microsoft Excel"
+      },
+      {
+        "title": "Websites with a CMS (WordPress)",
+        "subtitle": "Multilingualism & STEM track • 25 hours",
+        "description": "Websites built with a CMS: pages structure, content management and best practices for clarity and usability.",
+        "stack": "WordPress, HTML, CSS, JavaScript"
+      }
+    ],
+    "certifications_title": "Certifications",
+    "certifications": [
+      {
+        "title": "Basic Safety Course for Workers/Students — 2025",
+        "issuer": "Gruppo Spaggiari Parma",
+        "date": "Feb 2025",
+        "note": "Basic workplace safety training."
+      }
+    ]
+  }
+}
